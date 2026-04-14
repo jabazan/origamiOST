@@ -1102,15 +1102,15 @@ function renderCard(q,isChild){
   const cls=(isChild?'child ':'')+(a.status?'c'+a.status:'');
   const showNote=a.status&&a.status!=='noaplica';
   const stdBox=q.std?`<div class="std-box"><div class="std-lbl">Estándar Odoo v19</div><div class="std-txt">${q.std}</div></div>`:'';
-  return`<div class="qcard ${cls}" id="qc-${q.id}">
+  return`<div class="qcard ${cls}" id="qc-${q.id}" data-qid="${q.id}" onclick="selectQuestion('${q.id}')">
   <div class="qhdr"><span class="qnum">${q.id}</span>
     <div style="flex:1"><div class="qtxt">${q.text}</div><span class="qfunc">${q.func}</span></div>
   </div>
   ${stdBox}
-  <div class="rads">${OPTS.map(o=>`<button class="rbtn${a.status===o.v?' '+o.c:''}" onclick="setStatus('${q.id}','${o.v}')">${o.l}</button>`).join('')}</div>
+  <div class="rads">${OPTS.map(o=>`<button class="rbtn${a.status===o.v?' '+o.c:''}" onclick="event.stopPropagation();setStatus('${q.id}','${o.v}')">${o.l}</button>`).join('')}</div>
   <div id="na-${q.id}" style="display:${showNote?'block':'none'}">
     <span class="notelbl">Notas / necesidad del cliente:</span>
-    <textarea class="noteinp" id="nt-${q.id}" oninput="saveNote('${q.id}')" placeholder="Describir la necesidad, el gap o el requerimiento de desarrollo...">${a.note||''}</textarea>
+    <textarea class="noteinp" id="nt-${q.id}" oninput="event.stopPropagation();saveNote('${q.id}')" placeholder="Describir la necesidad, el gap o el requerimiento de desarrollo...">${a.note||''}</textarea>
   </div>
 </div>`;
 }
