@@ -1341,6 +1341,25 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(qId) card.addEventListener('click',()=>selectQuestion(qId));
   });
 });
+function selectQuestion(qId){
+  const q=Q_MAP[qId];
+  if(!q)return;
+  document.getElementById('stdQid').textContent=`ID: ${qId}`;
+  document.getElementById('stdFunc').textContent=q.func;
+  document.getElementById('stdTxt').textContent=q.std;
+  document.getElementById('stdPanel').classList.add('active');
+}
+
+function closeStdPanel(){
+  document.getElementById('stdPanel').classList.remove('active');
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.qcard').forEach(card=>{
+    const qId=card.getAttribute('data-qid');
+    if(qId) card.addEventListener('click',()=>selectQuestion(qId));
+  });
+});
 </script>
 </body>
 </html>
