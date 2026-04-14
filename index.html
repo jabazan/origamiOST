@@ -14,7 +14,7 @@
   --accent:#2a52d4;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.5;display:flex;flex-direction:column;height:100vh}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.5}
 .app-hdr{background:var(--text);color:#fff;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;position:sticky;top:0;z-index:100}
 .app-title{font-size:15px;font-weight:600;letter-spacing:-.01em}
 .app-sub{font-size:11px;color:rgba(255,255,255,.5);margin-top:1px}
@@ -29,7 +29,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .ci:focus{outline:none;border-color:var(--accent);background:#fff}
 .tabs-bar{background:var(--surface);border-bottom:1px solid var(--border);padding:0 20px;display:flex;gap:1px;overflow-x:auto;scrollbar-width:none}
 .tabs-bar::-webkit-scrollbar{display:none}
-.tab-btn{padding:9px 12px;font-size:13px;color:var(--text2);cursor:pointer;background:transparent;border:none;border-bottom:2px solid transparent;white-space:nowrap;transition:all .15s}
+.tab-btn{padding:9px 12px;font-size:13px;color:var(--text2);cursor:pointer;background:transparent;border:none;border-bottom:2px solid transparent;white-space:nowrap;transition:all .15s;display:flex;align-items:center;gap:5px;font-family:inherit}
 .tab-btn:hover{color:var(--text)}
 .tab-btn.active{color:var(--text);font-weight:500;border-bottom-color:var(--accent)}
 .tbadge{padding:1px 5px;border-radius:99px;font-size:10px;background:var(--surface2);color:var(--text3);font-variant-numeric:tabular-nums}
@@ -41,51 +41,71 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .chip{padding:3px 10px;font-size:12px;border:1px solid var(--border);border-radius:99px;cursor:pointer;background:transparent;color:var(--text2);font-family:inherit;transition:all .15s}
 .chip:hover{background:var(--surface2)}
 .chip.on{background:var(--text);color:#fff;border-color:var(--text)}
-.main-layout{display:flex;flex:1;overflow:hidden}
-.content{padding:18px 20px;flex:1;overflow-y:auto;max-width:900px}
-.std-panel{width:35%;background:var(--surface);border-left:1px solid var(--border);padding:18px;overflow-y:auto;display:none;flex-direction:column;box-shadow:-2px 0 8px rgba(0,0,0,.08);min-width:300px}
-.std-panel.active{display:flex}
-.std-panel-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border)}
-.std-panel-title{font-size:12px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.06em}
-.std-close{background:none;border:none;color:var(--text3);font-size:18px;cursor:pointer;padding:0;width:24px;height:24px;display:flex;align-items:center;justify-content:center}
-.std-close:hover{color:var(--text)}
-.std-qid{font-size:11px;color:var(--text3);margin-bottom:8px;font-family:monospace;padding:6px;background:var(--surface2);border-radius:4px}
-.std-func{font-size:10px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px}
-.std-txt{font-size:13px;color:var(--text);line-height:1.5}
+.content{padding:18px 20px;max-width:900px}
 .sec{margin-bottom:18px}
 .sec-hdr{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;padding-bottom:5px;border-bottom:1px solid var(--border);margin-bottom:8px}
-.qcard{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-bottom:7px;cursor:pointer;transition:all .15s}
-.qcard:hover{border-color:var(--accent);box-shadow:0 2px 8px rgba(42,82,212,.08)}
+.sec-skip{background:var(--surface2);border:1px dashed var(--border);border-radius:7px;padding:7px 11px;font-size:12px;color:var(--text3);display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px}
+.sec-skip button{font-size:11px;color:var(--text2);background:none;border:none;cursor:pointer;text-decoration:underline;white-space:nowrap}
+.qcard{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-bottom:7px}
+.qcard.child{margin-left:18px;border-left:2px solid var(--border)}
 .qcard.cstandard{border-left:3px solid var(--green-bd)}
 .qcard.cgap{border-left:3px solid #e87b6a}
 .qcard.cdev{border-left:3px solid #d4a248}
+.qcard.cnoaplica{border-left:3px solid var(--border);opacity:.6}
+.qcard.child.cstandard{border-left:3px solid var(--green-bd)}
+.qcard.child.cgap{border-left:3px solid #e87b6a}
+.qcard.child.cdev{border-left:3px solid #d4a248}
 .qhdr{display:flex;gap:7px;margin-bottom:7px}
 .qnum{font-size:10px;color:var(--text3);min-width:28px;padding-top:2px;white-space:nowrap;font-variant-numeric:tabular-nums}
 .qtxt{font-size:13px;color:var(--text);line-height:1.45;flex:1}
 .qfunc{font-size:11px;padding:2px 7px;border-radius:99px;background:var(--surface2);color:var(--text3);margin-top:3px;display:inline-block}
+.std-box{margin:7px 0;padding:7px 10px;background:var(--green-bg);border-radius:6px;border-left:2px solid var(--green-bd)}
+.std-lbl{font-size:9px;font-weight:700;color:var(--green-tx);text-transform:uppercase;letter-spacing:.07em;margin-bottom:2px}
+.std-txt{font-size:12px;color:var(--green-dk);line-height:1.4}
+.dep-hide{background:var(--surface2);border:1px dashed var(--border);border-radius:6px;padding:5px 10px;font-size:12px;color:var(--text3);display:flex;align-items:center;justify-content:space-between;margin:0 0 7px 18px;gap:8px}
+.dep-hide button{font-size:11px;color:var(--text2);background:none;border:none;cursor:pointer;text-decoration:underline;white-space:nowrap}
+.rads{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}
 .rbtn{padding:3px 10px;font-size:12px;border:1px solid var(--border);border-radius:99px;cursor:pointer;background:transparent;color:var(--text2);font-family:inherit;transition:all .15s}
 .rbtn:hover{background:var(--surface2)}
 .rbtn.rstd{background:var(--green-bg);color:var(--green-tx);border-color:var(--green-bd)}
 .rbtn.rgap{background:var(--red-bg);color:var(--red-tx);border-color:var(--red-bd)}
 .rbtn.rdev{background:var(--amber-bg);color:var(--amber-tx);border-color:var(--amber-bd)}
 .rbtn.rna{background:var(--gray-bg);color:var(--gray-tx);border-color:var(--gray-bd)}
+.notelbl{font-size:11px;color:var(--text2);margin-top:7px;display:block}
+.noteinp{width:100%;padding:5px 8px;font-size:12px;border:1px solid var(--border);border-radius:5px;background:var(--surface2);color:var(--text);resize:vertical;min-height:44px;font-family:inherit;margin-top:3px}
+.noteinp:focus{outline:none;border-color:var(--accent);background:#fff}
+.nores{text-align:center;padding:2.5rem;color:var(--text3);font-size:14px}
+.sumwrap{background:var(--surface2);border-radius:8px;padding:14px;margin-bottom:16px}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:7px;margin-bottom:12px}
+.scard{background:var(--surface);border-radius:6px;padding:10px;text-align:center;border:1px solid var(--border)}
+.sn{font-size:24px;font-weight:600;color:var(--text);font-variant-numeric:tabular-nums}
+.sn.sg{color:#c0392b}.sn.ss{color:#27ae60}.sn.sd{color:#c77b00}
+.sl{font-size:10px;color:var(--text3);margin-top:2px;text-transform:uppercase;letter-spacing:.04em}
+.glist{margin-top:10px}
+.grow{display:flex;gap:8px;padding:7px 0;border-bottom:1px solid var(--border);align-items:flex-start}
+.grow:last-child{border-bottom:none}
+.gdot{width:7px;height:7px;border-radius:50%;margin-top:5px;flex-shrink:0}
+.gdot.gg{background:#e87b6a}.gdot.gd{background:#d4a248}
+.gtxt{font-size:13px;color:var(--text);line-height:1.4}
+.gmeta{font-size:11px;color:var(--text2);margin-top:1px}
+.gstd{font-size:11px;color:var(--green-tx);margin-top:2px;font-style:italic}
 .btns{display:flex;gap:7px;flex-wrap:wrap}
 .bpri{padding:7px 14px;font-size:13px;font-weight:500;background:var(--text);color:#fff;border:none;border-radius:6px;cursor:pointer;font-family:inherit}
 .bpri:hover{opacity:.85}
 .bsec{padding:7px 14px;font-size:13px;background:transparent;color:var(--text2);border:1px solid var(--border);border-radius:6px;cursor:pointer;font-family:inherit}
 .bsec:hover{background:var(--surface2)}
-#botbar{padding:12px 20px;border-top:1px solid var(--border);background:var(--surface);display:flex;gap:8px;flex-wrap:wrap}
-@media(max-width:1024px){
-  .main-layout{flex-direction:column}
-  .std-panel{width:100%;border-left:none;border-top:1px solid var(--border)}
-  .content{max-width:100%}
-}
-</style>
+#botbar{padding:12px 20px;border-top:1px solid var(--border);background:var(--surface);display:flex;gap:8px;flex-wrap:wrap;position:sticky;bottom:0;z-index:50}</style>
 </head>
 <body>
 <div class="app-hdr">
-  <div><div class="app-title">Relevamiento de Alcance — Odoo v19</div><div class="app-sub">8 módulos · preguntas anidadas · estándar nativo · lógica condicional</div></div>
-  <div class="prog-wrap"><div class="pbar"><div class="pfill" id="pfill" style="width:0%"></div></div><div class="plbl" id="plbl">0/0</div></div>
+  <div>
+    <div class="app-title">Relevamiento de Alcance — Odoo v19</div>
+    <div class="app-sub">8 módulos · preguntas anidadas · estándar nativo · lógica condicional</div>
+  </div>
+  <div class="prog-wrap">
+    <div class="pbar"><div class="pfill" id="pfill" style="width:0%"></div></div>
+    <div class="plbl" id="plbl">0/0</div>
+  </div>
 </div>
 <div class="client-strip">
   <div class="cf"><label class="cl">Cliente</label><input class="ci" id="c1" placeholder="Nombre del cliente"/></div>
@@ -101,20 +121,9 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
   <button class="chip" onclick="setF('dev',this)">⚙ Desarrollo</button>
   <button class="chip" onclick="setF('pending',this)">Pendientes</button>
 </div>
-<div class="main-layout">
-  <div class="content">
-    <div id="qwrap"></div>
-    <div id="sumview" style="display:none"></div>
-  </div>
-  <div class="std-panel" id="stdPanel">
-    <div class="std-panel-hdr">
-      <div class="std-panel-title">Descripción Estándar</div>
-      <button class="std-close" onclick="closeStdPanel()">✕</button>
-    </div>
-    <div class="std-qid" id="stdQid"></div>
-    <div class="std-func" id="stdFunc"></div>
-    <div class="std-txt" id="stdTxt"></div>
-  </div>
+<div class="content">
+  <div id="qwrap"></div>
+  <div id="sumview" style="display:none"></div>
 </div>
 <div id="botbar">
   <button class="bpri" onclick="showSum()">Ver resumen de gaps ↗</button>
@@ -124,42 +133,1173 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
   <button class="bsec" onclick="clearAll()" style="margin-left:auto">Limpiar todo</button>
 </div>
 <script>
-const Q_MAP={/*tu Q_MAP completo aquí*/};
-const MODS_STRUCT=[/*tu MODS_STRUCT completo aquí*/];
+const Q_MAP={
+"P17":{"text": "¿Qué permisos / funciones tienen los vendedores? (presupuestar, facturar, cobrar, etc.)", "func": "Permisos", "std": "Odoo permite configurar roles con permisos diferenciados: ver, crear, editar y eliminar. Los vendedores pueden restringirse a sus propios registros o a los de su equipo.", "parent": null, "children": null},
+"P18":{"text": "¿Se requieren plantillas personalizables de correo, presupuesto u órdenes de venta?", "func": "Plantillas", "std": "Odoo incluye un Quotation Builder visual (bloques arrastrables). Las plantillas de correo son editables por módulo con campos dinámicos del registro.", "parent": null, "children": null},
+"P19":{"text": "¿Se utilizan actividades de seguimiento a lo largo del proceso comercial?", "func": "Chatter", "std": "El Chatter nativo permite programar actividades (llamadas, reuniones, emails) con responsable y fecha directamente en cada oportunidad, pedido o factura.", "parent": null, "children": null},
+"P20":{"text": "¿Se necesita mensajería interna y externa entre usuarios?", "func": "Chatter", "std": "El Chatter soporta mensajes internos (solo equipo) y externos (email al cliente). Integra con el correo corporativo para recibir y enviar desde Odoo.", "parent": null, "children": null},
+"P21":{"text": "¿De qué forma se generan los leads / oportunidades? (manual, correo, redes, formulario web, etc.)", "func": "Origen leads", "std": "Odoo CRM genera leads automáticamente desde formularios web, alias de correo, chat en vivo y campañas. La minería de leads permite prospectar desde bases de datos externas.", "parent": null, "children": ["P23", "P25", "P26", "P27", "P28", "P29"]},
+"P22":{"text": "¿Cuál es el proceso de alta de clientes?", "func": "Alta clientes", "std": "Los clientes se crean desde el formulario de contacto. Odoo puede deduplicar por email/nombre y completar datos automáticamente con integraciones externas.", "parent": null, "children": null},
+"P23":{"text": "¿Cómo se asignan las oportunidades a los vendedores?", "func": "Asignación", "std": "Odoo CRM permite asignación manual o automática por reglas (zona, fuente del lead, equipo). Soporta asignación por turno rotativo (round-robin).", "parent": "P21", "children": null},
+"P24":{"text": "¿Las oportunidades se registran en ARS y/o en otra moneda?", "func": "Monedas", "std": "Odoo soporta multidivisa de forma nativa. Las tasas de cambio se actualizan desde fuentes externas o manualmente.", "parent": null, "children": null},
+"P25":{"text": "¿El cálculo de probabilidad de cierre es manual o automático?", "func": "Probabilidad", "std": "Odoo CRM incluye Puntuación Predictiva de Leads (IA nativa) que calcula automáticamente la probabilidad de cierre basándose en el historial de oportunidades.", "parent": "P21", "children": null},
+"P26":{"text": "¿Se realiza una clasificación del lead / oportunidad?", "func": "Clasificación", "std": "Las oportunidades se clasifican con etiquetas y prioridad (1 a 3 estrellas). Se pueden filtrar y agrupar por cualquier campo nativo o personalizado.", "parent": "P21", "children": null},
+"P27":{"text": "¿Existen validaciones o aprobaciones para pasar de etapa en etapa?", "func": "Etapas", "std": "Odoo permite configurar campos requeridos por etapa del pipeline. Un motor de aprobación nativo por etapa en CRM no existe; puede implementarse con automatizaciones.", "parent": "P21", "children": null},
+"P28":{"text": "¿Cuáles son los motivos de pérdida de oportunidades y cómo se gestionan?", "func": "Pérdida", "std": "Al marcar una oportunidad como Perdida, Odoo solicita un motivo configurable. Las oportunidades perdidas se archivan y analizan por motivo de pérdida.", "parent": "P21", "children": null},
+"P29":{"text": "¿Existen oportunidades que generen ingresos recurrentes (presupuestos recurrentes)?", "func": "Recurrencia", "std": "Odoo Suscripciones permite crear productos de cobro recurrente. Desde una oportunidad CRM se puede generar una suscripción al ganar el deal.", "parent": "P21", "children": null},
+"P32":{"text": "¿Los presupuestos son distintos para cada cliente o se podría definir una plantilla base?", "func": "Plantillas", "std": "Odoo permite crear Plantillas de Cotización reutilizables con productos preconfigurados, condiciones, plazos y bloques de contenido.", "parent": null, "children": null},
+"P33":{"text": "¿Se realizan presupuestos con productos opcionales para que el cliente elija?", "func": "Opcionales", "std": "Nativo en Odoo Sales: la pestaña Productos Opcionales permite agregar artículos que el cliente selecciona desde su portal antes de confirmar (up-selling nativo).", "parent": null, "children": null},
+"P34":{"text": "¿Se utilizan diferentes unidades de medida en los pedidos de venta?", "func": "Unidades de medida", "std": "Odoo soporta múltiples UdM con conversión automática. Se puede vender en unidades, cajas o toneladas y el sistema convierte al stock en la unidad base.", "parent": null, "children": null},
+"P35":{"text": "¿Existen restricciones sobre el precio de los productos o cualquier vendedor puede editarlos?", "func": "Permisos precio", "std": "Odoo permite bloquear la edición de precios por rol. Se puede configurar un margen mínimo y requerir aprobación de gerencia si el precio baja de ese umbral.", "parent": null, "children": null},
+"P36":{"text": "¿Es necesario calcular costos de envío en los presupuestos?", "func": "Costos envío", "std": "Odoo incluye Métodos de Envío con cálculo por peso, precio fijo o por regla. Se agregan como línea adicional en el presupuesto de forma automática.", "parent": null, "children": ["P36b"]},
+"P36b":{"text": "¿Hay que integrar módulos de terceros para los costos de envío? ¿Los módulos existen o hay que desarrollarlos?", "func": "Integración envíos", "std": "La integración con transportistas externos (FedEx, DHL, UPS) requiere módulos adicionales. Para transportistas locales argentinos generalmente se necesita módulo OCA o desarrollo.", "parent": "P36", "children": null},
+"P37":{"text": "¿Se realizan descuentos por línea o descuentos globales?", "func": "Descuentos", "std": "Odoo Sales permite activar el campo de descuento % por línea. Los descuentos globales pueden gestionarse mediante listas de precio o programas de descuento.", "parent": null, "children": null},
+"P38":{"text": "¿Las líneas del presupuesto tienen notas personalizadas o secciones?", "func": "Formato líneas", "std": "Las líneas de pedido soportan notas internas, secciones separadoras y subtotales de sección para estructurar el presupuesto en bloques temáticos.", "parent": null, "children": null},
+"P39":{"text": "¿Se utilizan términos y condiciones generales o específicos por presupuesto?", "func": "TyC", "std": "Odoo permite configurar T&C globales (se agregan automáticamente a todos los presupuestos) o editarlos manualmente en cada cotización.", "parent": null, "children": null},
+"P40":{"text": "¿Se realizan presupuestos en moneda extranjera? (EUR, USD, etc.)", "func": "Monedas", "std": "Con multidivisa habilitado, cada presupuesto puede emitirse en la moneda del cliente. Odoo convierte al TC vigente y registra diferencias de cambio al cobrar.", "parent": null, "children": null},
+"P44":{"text": "¿Se detallan plazos de pago en los presupuestos?", "func": "Plazos de pago", "std": "Odoo gestiona Términos de Pago configurables (ej: 30% adelanto, 70% a 30 días). Se asignan por cliente o por pedido y generan el vencimiento de facturas automáticamente.", "parent": null, "children": null},
+"P45":{"text": "¿Se utilizan Incoterms?", "func": "Incoterms", "std": "Odoo incluye los Incoterms estándar (FOB, CIF, EXW, etc.) como campo en presupuestos y órdenes de compra. Aparecen en los documentos impresos.", "parent": null, "children": null},
+"P47":{"text": "¿Los presupuestos se imputan a centros de costo / cuentas analíticas?", "func": "Analítica", "std": "Odoo permite imputar líneas de ventas a cuentas analíticas y planes analíticos, configurables para que apliquen automáticamente según el producto o el cliente.", "parent": null, "children": null},
+"P48":{"text": "¿Se analiza el margen de ganancia de cada presupuesto? ¿Cómo se calcula?", "func": "Margen", "std": "Odoo Sales muestra el margen por línea y total del presupuesto basándose en el costo del producto (precio estándar, AVCO o FIFO según el método de valoración).", "parent": null, "children": null},
+"P50":{"text": "¿Se definen límites de crédito por cliente?", "func": "Límite crédito", "std": "Odoo permite configurar un límite de crédito por cliente. Si el saldo vencido supera el límite, puede bloquear nuevos pedidos o mostrar advertencia al vendedor.", "parent": null, "children": null},
+"P51":{"text": "¿Por qué medios se envía el presupuesto al cliente? (mail, WhatsApp, impreso, etc.)", "func": "Comunicación", "std": "Desde el presupuesto se puede enviar por email (PDF adjunto), compartir enlace al portal del cliente (donde puede aprobar y pagar en línea) o imprimir en PDF.", "parent": null, "children": null},
+"P53":{"text": "¿Es necesaria una aprobación antes de confirmar la venta? ¿En qué casos?", "func": "Aprobaciones", "std": "Odoo Sales permite configurar aprobaciones por margen mínimo o por monto máximo de pedido. Si se supera el umbral, requiere aprobación de un gerente antes de confirmar.", "parent": null, "children": null},
+"P55":{"text": "¿Existe una única lista de precios o múltiples listas? ¿En qué monedas?", "func": "Listas de precios", "std": "Odoo soporta múltiples Listas de Precio por cliente, moneda o canal de venta. Se asignan al cliente o se seleccionan en el presupuesto.", "parent": null, "children": ["P56", "P57", "P58"]},
+"P56":{"text": "¿Con qué periodicidad se actualizan las listas de precios?", "func": "Actualización", "std": "Las listas de precio en Odoo tienen fechas de vigencia. Se pueden actualizar manualmente, por importación CSV/Excel o con reglas basadas en % sobre costo.", "parent": "P55", "children": null},
+"P57":{"text": "¿Qué reglas rigen las listas? (por producto, fórmulas, cantidades mínimas, fechas, etc.)", "func": "Reglas", "std": "Las reglas soportan: precio fijo, descuento % sobre precio base, fórmula (% sobre costo u otra lista) y condiciones por cantidad mínima y fechas de vigencia.", "parent": "P55", "children": null},
+"P58":{"text": "¿Existen listas de precios específicas para determinados clientes?", "func": "Clientes específicos", "std": "Sí. En Odoo se asigna una lista de precio por defecto desde la ficha del cliente. Al crear un presupuesto para ese cliente, la lista se aplica automáticamente.", "parent": "P55", "children": null},
+"P59":{"text": "¿Se aplican cupones de descuento?", "func": "Cupones", "std": "Odoo incluye un motor de Programas de Descuento que genera cupones con código único, condiciones de uso (monto mínimo, producto específico, fecha de validez).", "parent": null, "children": null},
+"P60":{"text": "¿Se aplican promociones especiales? (2x1, llevar más pagar menos, etc.)", "func": "Promociones", "std": "Las Promociones en Odoo permiten configurar reglas automáticas: descuento por cantidad, regalo de producto, descuento en un producto si se compra otro.", "parent": null, "children": ["P65"]},
+"P61":{"text": "¿Se aplican tarjetas de regalo (gift cards)?", "func": "Gift cards", "std": "Odoo soporta Gift Cards nativamente en el módulo de Programas de Fidelidad. Se generan con un saldo específico y el cliente las canjea como medio de pago.", "parent": null, "children": null},
+"P62":{"text": "¿Se aplica acumulación de puntos por compra?", "func": "Puntos", "std": "El programa de Puntos de Fidelidad en Odoo permite acumular puntos por monto comprado o por producto, y canjearlos como descuento o regalo en compras futuras.", "parent": null, "children": null},
+"P63":{"text": "¿Se aplican códigos de descuento?", "func": "Códigos descuento", "std": "Los códigos de descuento se gestionan desde el módulo de Programas de Descuento. El vendedor o el cliente ingresan el código y el descuento se aplica automáticamente.", "parent": null, "children": null},
+"P64":{"text": "¿Se da el caso de comprar el producto X y llevarse el producto Y de regalo?", "func": "Promo producto", "std": "Odoo permite reglas del tipo compra X y obtiene Y gratis. El producto Y se agrega automáticamente a la orden con precio 0 al cumplirse la condición.", "parent": null, "children": null},
+"P65":{"text": "¿Qué reglas aplican a las promociones? (monto mínimo, cantidad mínima, etc.)", "func": "Reglas promo", "std": "Las reglas aceptan condiciones por: monto mínimo, cantidad mínima de un producto, cliente específico, lista de precio o combinación de condiciones.", "parent": "P60", "children": null},
+"P66":{"text": "¿Existen múltiples equipos de ventas para gestionar oportunidades?", "func": "Equipos", "std": "Odoo CRM permite crear múltiples Equipos de Ventas con sus propios pipelines, miembros y metas. Cada equipo puede tener su propio alias de email.", "parent": null, "children": ["P67", "P68"]},
+"P67":{"text": "¿Existen reglas de asignación de vendedores a oportunidades o presupuestos?", "func": "Asignación", "std": "Odoo permite configurar Reglas de Asignación automática por zona geográfica, idioma o fuente del lead. También soporta asignación por turno rotativo.", "parent": "P66", "children": null},
+"P68":{"text": "¿Se definen objetivos o metas de venta por equipo o vendedor?", "func": "Metas", "std": "En Odoo CRM se configuran objetivos de facturación por equipo y vendedor, con seguimiento del avance en tiempo real desde el dashboard.", "parent": "P66", "children": null},
+"P69":{"text": "¿Se realiza una confirmación manual o puede hacerse en línea por el cliente?", "func": "Confirmación", "std": "Odoo permite que el cliente confirme y firme el presupuesto directamente desde el portal, sin intervención del vendedor. Soporta confirmación automática por pago en línea.", "parent": null, "children": null},
+"P70":{"text": "¿Se utiliza triangulación de productos o dropshipping?", "func": "Dropshipping", "std": "Odoo Inventory incluye la ruta de Dropshipping de forma nativa. Al confirmar la venta, genera automáticamente una orden de compra al proveedor con la dirección del cliente final.", "parent": null, "children": ["P70b"]},
+"P70b":{"text": "¿El proveedor entrega directamente al cliente final? ¿Cómo se coordina la operación?", "func": "Proceso dropshipping", "std": "En el flujo de Dropshipping de Odoo, la orden de compra generada tiene como dirección de entrega la del cliente. El estado de la venta se actualiza automáticamente.", "parent": "P70", "children": null},
+"P90":{"text": "¿Los vendedores crean facturas de clientes? ¿Qué nivel de permisos tienen?", "func": "Permisos facturación", "std": "Odoo permite que los vendedores generen facturas desde la orden de venta (en borrador o confirmadas) según permisos. El contador puede tener acceso exclusivo para confirmar.", "parent": null, "children": null},
+"P91":{"text": "¿Se realiza una factura para varios pedidos del mismo cliente? (facturación masiva)", "func": "Facturación masiva", "std": "Odoo permite agrupar múltiples órdenes de venta del mismo cliente y generar una única factura consolidada seleccionando las órdenes y usando Crear Factura.", "parent": null, "children": null},
+"P93":{"text": "¿Se facturan anticipos antes de la entrega?", "func": "Anticipos", "std": "Odoo Sales permite generar una factura de anticipo (% o monto fijo) sobre la orden de venta. Al facturar el total, el anticipo se descuenta automáticamente.", "parent": null, "children": null},
+"P94":{"text": "¿Se facturan cantidades pedidas o cantidades efectivamente entregadas?", "func": "Política facturación", "std": "La Política de Facturación se configura por producto: Cantidades Pedidas (factura al confirmar) o Cantidades Entregadas (factura solo lo que salió del almacén).", "parent": null, "children": null},
+"GATE_POS":{"text": "¿La empresa tiene puntos de venta presenciales (mostrador)?", "func": "Módulo POS", "std": "Odoo POS es una aplicación web que funciona con o sin internet. Se integra con impresoras de tickets, lectores de código de barras, básculas y terminales de pago por IoT.", "parent": null, "children": null},
+"P86":{"text": "¿Cómo es el proceso de venta por mostrador? ¿Cuántas personas intervienen y con qué permisos?", "func": "Proceso POS", "std": "Odoo POS permite configurar roles de cajero y gerente con permisos diferenciados: aplicar descuentos, hacer devoluciones, cerrar sesión o modificar el catálogo.", "parent": null, "children": null},
+"P87":{"text": "En cambio de turno, ¿cada empleado abre una nueva sesión o se cierra al final del día?", "func": "Sesiones POS", "std": "Cada sesión de POS registra los movimientos de caja. Odoo permite múltiples sesiones por día (por turno) o una sesión continua. El cierre genera el arqueo automáticamente.", "parent": null, "children": null},
+"P88":{"text": "¿Qué reglas tendrán las listas de precios para ventas por mostrador?", "func": "Precios POS", "std": "Las Listas de Precio de Odoo aplican también en POS. Se puede asignar una lista por defecto al punto de venta o permitir que el cajero la seleccione manualmente.", "parent": null, "children": null},
+"P89":{"text": "¿Qué programas de fidelidad se utilizarán en el punto de venta?", "func": "Fidelidad POS", "std": "Los Programas de Fidelidad y Cupones de Odoo aplican de forma nativa en POS. El cajero puede escanear el código de cupón o identificar al cliente para acumular y canjear puntos.", "parent": null, "children": null},
+"GATE_EC":{"text": "¿La empresa tiene o va a tener tienda online (e-commerce)?", "func": "Módulo E-commerce", "std": "Odoo eCommerce es un módulo integrado al sitio web. El catálogo, precios, stock, pagos y logística están conectados en tiempo real con el resto del ERP.", "parent": null, "children": null},
+"P10":{"text": "¿Qué tipos de clientes tendrá el e-commerce? (B2B y/o B2C)", "func": "Tipos cliente", "std": "Odoo eCommerce permite configurar el sitio en modo B2C (precios con IVA, compra sin cuenta), B2B (precios sin IVA, requiere cuenta aprobada) o ambos simultáneamente.", "parent": null, "children": null},
+"P11":{"text": "¿Los clientes deben crear cuenta para comprar o pueden hacerlo como invitados?", "func": "Acceso", "std": "Odoo permite configurar si los compradores deben registrarse o pueden comprar como invitados. Los invitados pueden convertirse en clientes al finalizar la compra.", "parent": null, "children": null},
+"P12":{"text": "¿Los clientes pueden registrarse solos en el sitio web?", "func": "Auto-registro", "std": "El auto-registro está habilitado por defecto. Se puede requerir aprobación manual del administrador antes de que el cliente pueda realizar su primera compra (útil en B2B).", "parent": null, "children": null},
+"P13":{"text": "¿Existen diferentes listas de precios o todos los clientes ven los mismos precios en la web?", "func": "Precios web", "std": "Las listas de precio de Odoo aplican en el eCommerce. Los clientes B2B registrados pueden ver precios diferenciados según la lista asignada a su cuenta.", "parent": null, "children": null},
+"P14":{"text": "¿Qué métodos de pago se aceptarán en la tienda online?", "func": "Métodos pago", "std": "Odoo integra pasarelas de pago nativas: Stripe, PayPal, Adyen, Mercado Pago, transferencia bancaria y pago en efectivo al entregar.", "parent": null, "children": null},
+"P15":{"text": "¿Cómo se establecen los costos de envío? ¿Se integra con algún transportista?", "func": "Envíos web", "std": "Odoo permite definir métodos de envío con tarifas fijas, por peso o por precio de compra. La integración con transportistas (FedEx, UPS) requiere módulos adicionales.", "parent": null, "children": null},
+"P74":{"text": "¿Los clientes pueden agregar múltiples productos al carrito o se compra de forma instantánea?", "func": "Carrito", "std": "El carrito de compras es estándar en Odoo eCommerce. Los clientes agregan productos, revisan el carrito y proceden al checkout con selección de envío y pago.", "parent": null, "children": null},
+"P78":{"text": "¿Se desea agregar lista de deseos (wishlist) además del carrito?", "func": "Wishlist", "std": "Odoo eCommerce incluye Wishlist de forma nativa. El cliente puede guardar productos para comprar más tarde; la lista se mantiene entre sesiones si está registrado.", "parent": null, "children": null},
+"P79":{"text": "¿Se agregarán reseñas y valoraciones de productos por parte de clientes?", "func": "Valoraciones", "std": "Odoo permite habilitar reseñas y puntuaciones de productos en el sitio web. Las valoraciones requieren que el cliente esté registrado; puede configurarse aprobación previa.", "parent": null, "children": null},
+"P81":{"text": "¿Se enviará un correo de recuperación a clientes con carrito abandonado?", "func": "Carrito abandonado", "std": "Odoo eCommerce detecta carritos abandonados y permite enviar emails automáticos de recuperación con el contenido del carrito y un enlace directo para retomar la compra.", "parent": null, "children": null},
+"P83":{"text": "¿Qué reglas tendrán las listas de precios para el e-commerce?", "func": "Precios e-commerce", "std": "Las mismas listas de precio de Ventas aplican en el eCommerce. Se pueden crear listas específicas para el canal web con vigencia y condiciones propias.", "parent": null, "children": null},
+"P84":{"text": "¿Qué programas de fidelidad se utilizarán en el e-commerce?", "func": "Fidelidad web", "std": "Los Programas de Fidelidad y Cupones aplican de forma nativa en el checkout del eCommerce. Los clientes ingresan el código o sus puntos se aplican automáticamente.", "parent": null, "children": null},
+"P105":{"text": "¿Qué reportes necesitan sobre oportunidades? (por equipo, vendedor, predicción de cierre, etc.)", "func": "Reportes CRM", "std": "Odoo CRM incluye dashboards de pipeline, reportes de actividad por vendedor, análisis de ganados/perdidos y pronóstico de ingresos basado en la probabilidad de cierre.", "parent": null, "children": null},
+"P106":{"text": "¿Qué reportes necesitan sobre ventas? (por canal, equipo, producto, zona, vendedor, etc.)", "func": "Reportes ventas", "std": "Odoo Sales ofrece análisis de ventas con tabla dinámica, gráficos y KPIs filtrables por período, vendedor, equipo, cliente, producto y categoría. Exportable a Excel.", "parent": null, "children": null},
+"P107":{"text": "¿Qué reportes necesitan sobre ventas por mostrador?", "func": "Reportes POS", "std": "Odoo POS genera reportes de sesión (ventas, pagos, devoluciones) y reportes globales por producto, cajero, método de pago y período.", "parent": null, "children": null},
+"P108":{"text": "¿Qué reportes necesitan sobre ventas por e-commerce? (productos, carritos abandonados, etc.)", "func": "Reportes web", "std": "Odoo eCommerce integra reportes de visitas (Google Analytics), conversión por producto, carritos abandonados y análisis de ventas web dentro del módulo de Ventas.", "parent": null, "children": null},
+"C01":{"text": "¿Qué permisos / funciones tienen los compradores? (cargar cotizaciones, confirmar órdenes, pagar, etc.)", "func": "Permisos", "std": "Odoo Purchase diferencia roles: quién puede crear RFQs, confirmar órdenes y aprobar compras por encima de cierto monto.", "parent": null, "children": null},
+"C02":{"text": "¿Se requieren plantillas personalizables de correos u órdenes de compra?", "func": "Plantillas", "std": "Odoo permite editar las plantillas de correo de RFQ y Orden de Compra usando el editor de plantillas nativo con campos dinámicos del pedido.", "parent": null, "children": null},
+"GATE_REQ":{"text": "¿La empresa utiliza o necesitaría utilizar requisiciones de compra internas?", "func": "Módulo requisiciones", "std": "Odoo incluye Solicitudes de Compra que permiten a empleados solicitar productos internamente. Las solicitudes pasan a un flujo de aprobación antes de generar la RFQ.", "parent": null, "children": null},
+"P113":{"text": "¿Quién crea las requisiciones? (usuarios operativos, empleados, jefes de área)", "func": "Creación", "std": "Cualquier usuario con acceso puede crear una requisición. Se puede restringir por nivel de acceso o departamento. Compras la recibe y convierte en RFQ.", "parent": null, "children": ["P113b"]},
+"P113b":{"text": "¿Las requisiciones pasan por alguna aprobación antes de convertirse en orden de compra?", "func": "Aprobación", "std": "Odoo permite configurar un flujo de aprobación con responsables por departamento o por monto. La aprobación desbloquea la generación de la RFQ al proveedor.", "parent": "P113", "children": null},
+"P115":{"text": "¿Cuál es el proceso de alta de proveedores en el sistema?", "func": "Alta proveedores", "std": "Los proveedores se gestionan como contactos en Odoo con su ficha (términos de pago, moneda, tarifas de precio, plazos de entrega). El alta puede ser manual o por importación.", "parent": null, "children": null},
+"P117":{"text": "¿Se suelen comparar cotizaciones de múltiples proveedores para el mismo producto?", "func": "Comparación", "std": "Odoo permite enviar la misma RFQ a múltiples proveedores y comparar las respuestas en una vista de comparativa de precios antes de seleccionar la oferta ganadora.", "parent": null, "children": ["P139"]},
+"P120":{"text": "¿Se utilizan diferentes unidades de medida en los pedidos de compra?", "func": "Unidades de medida", "std": "Odoo soporta múltiples UdM en compras con conversión automática al stock. Por ejemplo: se compra en cajas de 12 y el sistema ingresa 12 unidades individuales al almacén.", "parent": null, "children": null},
+"P122":{"text": "¿Se realizan descuentos por línea o descuentos globales en las órdenes de compra?", "func": "Descuentos", "std": "Odoo Purchase permite activar el campo de descuento (%) por línea. Los descuentos globales pueden gestionarse mediante tarifas de proveedor.", "parent": null, "children": null},
+"P128":{"text": "¿Se solicita cotización en moneda extranjera? (EUR, USD, etc.)", "func": "Monedas", "std": "Con multidivisa, cada orden de compra puede emitirse en la moneda del proveedor. Odoo convierte el costo al TC vigente al momento de la recepción y la valoración del stock.", "parent": null, "children": null},
+"P132":{"text": "¿Se detallan plazos de pago en las órdenes de compra?", "func": "Plazos de pago", "std": "Los Términos de Pago de Odoo aplican también en compras. Se asigna el plazo por defecto desde la ficha del proveedor y se puede modificar en cada orden.", "parent": null, "children": null},
+"P133":{"text": "¿Se define un plazo de entrega esperado en la orden de compra?", "func": "Plazo entrega", "std": "Odoo calcula la fecha de entrega esperada basándose en el plazo de entrega configurado por proveedor y producto, considerando los días de seguridad del almacén.", "parent": null, "children": null},
+"P136":{"text": "¿Los pedidos de compra se imputan a cuentas analíticas?", "func": "Analítica", "std": "Odoo permite imputar líneas de compra a cuentas analíticas, configurables para que apliquen automáticamente según el producto o el proveedor.", "parent": null, "children": null},
+"P138":{"text": "¿Es necesaria una aprobación antes de confirmar la compra? ¿A partir de qué monto?", "func": "Aprobaciones", "std": "Odoo Purchase permite habilitar Aprobación de Órdenes de Compra por monto. Las órdenes que superen el límite quedan en espera hasta que un gerente las apruebe.", "parent": null, "children": null},
+"P139":{"text": "¿Se realizan acuerdos de compra formales o licitaciones entre proveedores?", "func": "Licitaciones", "std": "Odoo incluye Acuerdos de Compra (Blanket Orders) para negociar precios y cantidades totales con un proveedor y generar órdenes parciales durante el período pactado.", "parent": "P117", "children": null},
+"P141":{"text": "¿Cómo se gestionan las tarifas de proveedores? (planilla Excel, portal de proveedor, etc.)", "func": "Tarifas", "std": "Odoo mantiene Tarifas de Proveedor por producto (precio, cantidad mínima, plazo de entrega, moneda y vigencia). Se pueden importar desde Excel o completar manualmente.", "parent": null, "children": null},
+"GATE_SUB":{"text": "¿La empresa lleva a cabo procesos de subcontratación? (se entrega MP al proveedor y devuelve producto terminado)", "func": "Módulo subcontratación", "std": "Odoo Manufacturing incluye el tipo de BOM Subcontratación. Al confirmar la fabricación, genera automáticamente una orden de compra al subcontratista y gestiona el envío de componentes.", "parent": null, "children": null},
+"P140b":{"text": "¿Cuántos niveles tiene la subcontratación? ¿El proveedor puede a su vez subcontratar?", "func": "Niveles subcontratación", "std": "Odoo soporta subcontratación multinivel (el componente enviado puede ser a su vez un producto subcontratado). Se configura en la estructura de BOM de cada producto.", "parent": null, "children": null},
+"P140c":{"text": "¿Cómo se coordina la entrega de materia prima y la recepción del producto terminado?", "func": "Proceso subcontratación", "std": "Odoo genera automáticamente los movimientos de stock para enviar componentes al proveedor (ubicación virtual de subcontratista) y recibir el producto terminado.", "parent": null, "children": null},
+"P142":{"text": "¿Se controla que los precios del proveedor coincidan con los de la orden de compra?", "func": "Control precios", "std": "Odoo tiene un control de facturación que alerta si el precio de la factura del proveedor difiere de la orden de compra. Se puede bloquear la validación si hay diferencia.", "parent": null, "children": null},
+"P146":{"text": "¿Los compradores cargan las facturas de proveedores? ¿Las confirman o solo las dejan en borrador?", "func": "Permisos facturación", "std": "Odoo permite que los compradores registren facturas de proveedor en borrador. La confirmación (validación contable) puede requerir permisos de contador.", "parent": null, "children": null},
+"P149":{"text": "¿Se realizan anticipos a proveedores?", "func": "Anticipos", "std": "Odoo Accounting permite registrar pagos anticipados a proveedores y vincularlos a la factura cuando llegue. El anticipo se aplica automáticamente como crédito al facturar.", "parent": null, "children": null},
+"P150":{"text": "¿Se facturan cantidades pedidas o cantidades efectivamente recibidas?", "func": "Política facturación", "std": "La Política de Control de Facturación en Compras se configura por producto: Cantidades Pedidas (factura desde la orden) o Cantidades Recibidas (factura solo lo recepcionado).", "parent": null, "children": null},
+"P151":{"text": "¿Los compradores procesan las recepciones o lo hace el área de depósito?", "func": "Recepción", "std": "En Odoo la recepción puede procesarla cualquier usuario con acceso al almacén. Los permisos se configuran por rol: solo lectura o edición sobre las recepciones.", "parent": null, "children": null},
+"P153":{"text": "¿Qué reportes necesitan sobre las requisiciones? (por usuario, departamento, producto, etc.)", "func": "Reportes req.", "std": "Odoo ofrece reportes de requisiciones filtrables por solicitante, departamento, estado y producto. Se pueden agrupar y exportar a Excel desde la vista de análisis.", "parent": null, "children": null},
+"P154":{"text": "¿Qué reportes necesitan sobre las compras realizadas? (por proveedor, producto, monto, etc.)", "func": "Reportes compras", "std": "Odoo Purchase incluye el Análisis de Compras con tabla dinámica y gráficos, filtrable por período, proveedor, producto, comprador y estado. Exportable a Excel.", "parent": null, "children": null},
+"P155":{"text": "¿Qué permisos tienen los usuarios de inventario? (crear productos, transferencias, ajustes de stock, etc.)", "func": "Permisos", "std": "Odoo Inventory tiene tres niveles: Usuario (procesa transferencias), Administrador (configura almacenes, rutas y productos). Los ajustes de stock requieren Administrador.", "parent": null, "children": null},
+"P156":{"text": "¿Cómo es el proceso de creación de productos? ¿Qué características tienen? (códigos de barra, variantes, categorías, etc.)", "func": "Alta productos", "std": "Los productos tienen ficha completa: tipo, categoría, variantes por atributos (talle, color), código de barras, referencia interna, rutas de abastecimiento y reglas de reorden.", "parent": null, "children": null},
+"P158":{"text": "¿Cuántos almacenes o depósitos existen en la empresa?", "func": "Almacenes", "std": "Odoo permite crear múltiples almacenes, cada uno con su propia dirección, secuencias de documentos y rutas de entrada/salida configurables de forma independiente.", "parent": null, "children": ["GATE_UBI"]},
+"GATE_UBI":{"text": "¿Se definirán múltiples ubicaciones internas dentro de los depósitos? (estantes, pasillos, áreas, etc.)", "func": "Ubicaciones", "std": "Odoo Inventory soporta una jerarquía de ubicaciones ilimitada (Almacén > Zona > Pasillo > Estante > Posición). Las ubicaciones pueden ser de tipo stock, recepción, expedición, etc.", "parent": "P158", "children": ["P161", "P163"]},
+"P161":{"text": "¿Se utilizan categorías de almacenamiento? (cantidad máxima de un producto por ubicación)", "func": "Categorías almacén", "std": "Las Estrategias de Almacenamiento permiten definir qué productos van a qué ubicaciones según capacidad, tipo de producto (frío, peligroso, voluminoso) y reglas de puesto fijo.", "parent": "GATE_UBI", "children": null},
+"P163":{"text": "¿De qué forma se realiza la toma de inventario por ubicación? (manual, scanner, etc.)", "func": "Inventario por ubicación", "std": "El Conteo Cíclico de Odoo permite inventariar por ubicación, categoría o producto. Se puede usar el módulo de Código de Barras para escanear y contar desde un dispositivo móvil.", "parent": "GATE_UBI", "children": null},
+"P157":{"text": "¿Se definirán cantidades mínimas y máximas para disparar reabastecimiento automático?", "func": "Reabastecimiento", "std": "Las Reglas de Reorden permiten definir stock mínimo y máximo por producto y ubicación. Cuando el stock cae por debajo del mínimo, Odoo genera automáticamente la orden de compra o fabricación.", "parent": null, "children": ["P160"]},
+"P160":{"text": "¿El abastecimiento es por compras automáticas, transferencias internas o fabricación?", "func": "Proceso abastecimiento", "std": "El motor de Rutas (Push/Pull) determina qué acción se dispara al necesitar stock: compra al proveedor, transferencia desde otro almacén u orden de fabricación, según la ruta configurada.", "parent": "P157", "children": null},
+"GATE_TRAZ":{"text": "¿Se realizará seguimiento de los productos por lotes, número de serie o fecha de vencimiento?", "func": "Trazabilidad", "std": "Odoo soporta tres niveles por producto: Sin seguimiento, Por Lote (un número para múltiples unidades) y Por Número de Serie (único por unidad). Se configura en la ficha del producto.", "parent": null, "children": ["P164b", "P165"]},
+"P164b":{"text": "¿La trazabilidad aplica en recepciones, entregas, fabricación o en todos los movimientos?", "func": "Alcance trazabilidad", "std": "En Odoo se configura si el lote/serie se asigna en la recepción, en la entrega o en ambas. La trazabilidad completa muestra el historial de cada lote desde recepción hasta entrega.", "parent": "GATE_TRAZ", "children": null},
+"P165":{"text": "¿Los pedidos son empaquetados? ¿Se lleva seguimiento de los paquetes?", "func": "Paquetes", "std": "El módulo de Paquetes de Odoo permite empaquetar productos con número de caja/palet y hacer seguimiento por número de paquete. Se integra con el Cluster Picking.", "parent": "GATE_TRAZ", "children": null},
+"P167":{"text": "¿Qué método de costeo se va a utilizar? (Estándar, FIFO, AVCO / Costo promedio ponderado)", "func": "Método costeo", "std": "Odoo soporta tres métodos: Precio Estándar (fijo), AVCO (promedio ponderado, se recalcula en cada recepción) y FIFO (vincula el costo a la capa de inventario más antigua).", "parent": null, "children": null},
+"P168":{"text": "¿Se desea una valoración automatizada del inventario con asientos contables automáticos?", "func": "Valoración automática", "std": "La Valoración Automática en Odoo genera asientos contables en tiempo real: al recibir mercadería (débito a Inventario), al vender (crédito Costo de Ventas) y al ajustar stock.", "parent": null, "children": null},
+"P169":{"text": "¿La valoración del stock se hace en ARS o también se necesita en USD?", "func": "Moneda valoración", "std": "Odoo valora el inventario en la moneda de la empresa (ARS en Argentina). El seguimiento en USD es posible habilitando divisa secundaria, aunque los asientos siempre son en moneda local.", "parent": null, "children": null},
+"GATE_LC":{"text": "¿Se utilizará el procedimiento de Costos en Destino (Landing Cost) para imputar costos adicionales a las recepciones?", "func": "Landing Cost", "std": "Odoo Inventory incluye Landing Costs de forma nativa. Permite imputar costos adicionales (flete, seguro, arancel) a una recepción, distribuyendo el costo entre los productos recibidos.", "parent": null, "children": ["P170b"]},
+"P170b":{"text": "¿Qué tipos de costos se imputarán? (logística, calidad, almacenamiento, seguros, etc.)", "func": "Tipos costos destino", "std": "Los productos de tipo costo en destino pueden ser servicios (flete, seguro, aduanas). Se vinculan a la recepción y el sistema redistribuye el costo entre los productos automáticamente.", "parent": "GATE_LC", "children": null},
+"P171":{"text": "¿Cómo es el proceso de recepción? (1 paso: directo; 2 pasos: recepción + ingreso; 3 pasos: + control)", "func": "Pasos recepción", "std": "Odoo permite configurar el flujo en 1, 2 o 3 pasos por almacén. El flujo de 3 pasos es: Zona de Recepción → Control de Calidad → Almacenamiento en ubicación final.", "parent": null, "children": null},
+"P172":{"text": "¿Cuál es el proceso de devolución de productos al proveedor?", "func": "Devoluciones compra", "std": "Desde la recepción, el botón Devolver genera un movimiento inverso de stock y puede crear automáticamente una Nota de Crédito al proveedor.", "parent": null, "children": null},
+"P173":{"text": "¿Cómo es el proceso de entrega? (1 paso: directo; 2 pasos: preparar + entregar; 3 pasos: pick + pack + ship)", "func": "Pasos entrega", "std": "Odoo configura el flujo de salida en 1, 2 o 3 pasos. El flujo de 3 pasos es: Picking (recolección) → Packing (empaquetado y verificación) → Shipping (despacho final al transportista).", "parent": null, "children": null},
+"P174":{"text": "¿Qué métodos de envío se utilizarán? (retiro en sucursal, envío a domicilio, etc.)", "func": "Métodos envío", "std": "Odoo permite configurar múltiples métodos de envío con sus tarifas, diferenciados por transportista, zona geográfica, tipo de producto y tiempo de entrega estimado.", "parent": null, "children": null},
+"P175":{"text": "¿El envío se terceriza con una empresa logística o lo realiza la propia empresa?", "func": "Logística", "std": "Odoo se integra con transportistas externos (DHL, FedEx, UPS) para calcular tarifas y generar etiquetas de envío. Para flota propia, usa el módulo de Rutas de Entrega.", "parent": null, "children": ["P182"]},
+"P182":{"text": "¿Se necesitan hojas de ruta con el recorrido del transportista?", "func": "Rutas", "std": "Odoo permite definir Rutas de Entrega con secuencia de paradas. El módulo de Fleet Management complementa la gestión de flota propia para asignar vehículos y conductores.", "parent": "P175", "children": null},
+"P180":{"text": "¿Cuáles son las estrategias de retirada de productos? (FIFO, LIFO, FEFO)", "func": "Estrategia retirada", "std": "Odoo soporta: FIFO (primero en entrar, primero en salir), FEFO (primero en vencer, primero en salir, requiere fechas de caducidad) y LIFO. Se configura por categoría de producto o ubicación.", "parent": null, "children": null},
+"P183":{"text": "¿Se necesita emitir COT en los remitos de entrega?", "func": "COT", "std": "La emisión de COT (Código de Operación de Traslado) para ARBA NO existe en el estándar global de Odoo. Requiere un módulo de localización argentina o desarrollo a medida.", "parent": null, "children": null},
+"P184":{"text": "¿Cuál es el proceso de devolución de productos de un cliente?", "func": "Devoluciones venta", "std": "Desde la entrega, el botón Devolver genera un movimiento de retorno de stock y puede crear automáticamente una Nota de Crédito al cliente. El stock reingresa al almacén de forma trazable.", "parent": null, "children": null},
+"GATE_OPD":{"text": "¿Se realizarán operaciones avanzadas de depósito como preparación por olas o por lotes?", "func": "Operaciones avanzadas", "std": "Odoo soporta Batch Picking (agrupar pedidos en un viaje) y Wave Picking (recolectores por zonas). Se habilitan en la configuración del módulo de inventario.", "parent": null, "children": ["P178", "P179"]},
+"P178":{"text": "¿Se realizarán entregas por olas? (cada empleado recoge un tipo de producto de múltiples órdenes)", "func": "Wave picking", "std": "Wave Picking en Odoo asigna un recolector a una zona del almacén. El sistema agrupa las líneas de pedido por zona y el recolector procesa todas las líneas en un solo recorrido.", "parent": "GATE_OPD", "children": null},
+"P179":{"text": "¿Se realizarán entregas por lotes? (cada empleado se encarga de varias órdenes completas)", "func": "Batch picking", "std": "Batch Picking agrupa múltiples órdenes de picking en un solo documento. El recolector recorre el almacén una vez para preparar varios pedidos simultáneamente.", "parent": "GATE_OPD", "children": null},
+"GATE_CAL":{"text": "¿Se establecerán puntos de control de calidad en transferencias, recepciones o entregas?", "func": "Control calidad", "std": "El módulo Quality de Odoo crea Puntos de Control de Calidad que se disparan automáticamente en operaciones específicas. Los controles pueden ser Aprobado/Fallido, medición numérica o foto.", "parent": null, "children": ["P185b"]},
+"P185b":{"text": "¿En qué operaciones específicas se aplicarán los controles? ¿Qué criterios se verifican?", "func": "Puntos de control", "std": "Los QCPs se configuran por: tipo de operación (recepción/entrega/fabricación), producto o categoría, y equipo responsable. Cada control puede tener instrucciones y criterios de aprobación.", "parent": "GATE_CAL", "children": null},
+"P186":{"text": "¿Con qué periodicidad se realiza la toma de inventario y sus ajustes? (mensual, anual, etc.)", "func": "Inventario periódico", "std": "Odoo permite realizar ajustes de inventario en cualquier momento. El Conteo Cíclico permite programar conteos periódicos por ubicación o categoría sin detener las operaciones.", "parent": null, "children": null},
+"P187":{"text": "¿Qué se hace con los productos desechados o dañados? ¿Se registran como mermas?", "func": "Mermas", "std": "Odoo gestiona las mermas mediante Órdenes de Desecho (Scrap Orders). El producto sale hacia una ubicación virtual de desecho, generando el asiento contable si la valoración es automática.", "parent": null, "children": null},
+"GATE_CB":{"text": "¿Se utilizarán códigos de barras o lectores para operaciones de inventario?", "func": "Módulo códigos de barra", "std": "El módulo Barcode de Odoo permite procesar recepciones, despachos, transferencias y conteos desde un dispositivo con lector de código de barras, sin necesidad de teclado ni mouse.", "parent": null, "children": ["P166b"]},
+"P166b":{"text": "¿Para qué operaciones se usarán? (toma de inventario, recepciones, entregas, ubicaciones, etc.)", "func": "Usos códigos de barra", "std": "Odoo Barcode soporta: escanear para recibir y ubicar productos, procesar pickings y packings, confirmar órdenes de fabricación y realizar conteos cíclicos. Soporta nomenclatura GS1.", "parent": "GATE_CB", "children": null},
+"P188":{"text": "¿Se requiere visualizar el stock en diferentes unidades de medida?", "func": "Stock por UM", "std": "Odoo muestra el stock disponible en la UdM base del producto. Con múltiples UdM habilitadas, se puede visualizar el equivalente en otras unidades dentro del reporte de inventario.", "parent": null, "children": null},
+"P190":{"text": "¿Se utilizan remitos preimpresos con CAI o se emiten directamente desde Odoo?", "func": "Remitos CAI", "std": "La emisión de remitos con CAI (Código de Autorización de Impresión) es una funcionalidad de localización Argentina que NO existe en el estándar global de Odoo. Requiere módulo o desarrollo.", "parent": null, "children": null},
+"P193":{"text": "¿Se realizan análisis de inventario pronosticado y disponible?", "func": "Forecast", "std": "Odoo muestra el inventario pronosticado por producto (stock actual + recepciones pendientes - entregas pendientes) con línea de tiempo desde la ficha del producto o el reporte.", "parent": null, "children": null},
+"P194":{"text": "¿Qué reportes generales se necesitarán? (movimientos, valoración, existencias, etc.)", "func": "Reportes generales", "std": "Odoo Inventory incluye: Valoración de Inventario, Historial de Movimientos, Análisis de Inventario (tabla dinámica) y Reporte de Lotes/Series. Todos exportables a Excel.", "parent": null, "children": null},
+"GATE_FAB":{"text": "¿La empresa fabrica, produce o ensambla productos propios?", "func": "Módulo fabricación", "std": "Odoo Manufacturing gestiona el ciclo completo de producción: listas de materiales, órdenes de fabricación, centros de trabajo, planificación de capacidad y control de costos.", "parent": null, "children": null},
+"P196":{"text": "¿Los productos a fabricar ya están creados en el sistema o se crean en el momento?", "func": "Productos", "std": "Los productos fabricados se crean previamente con su BOM asociada. Para productos personalizados, Odoo permite crear el producto y la BOM en el momento de la orden de fabricación.", "parent": null, "children": null},
+"P197":{"text": "¿Se han definido listas de materiales? ¿Son fijas o varían según el pedido?", "func": "LM", "std": "Las BOMs definen componentes, cantidades y operaciones. Las BOMs por variante permiten tener recetas diferentes para cada variante del mismo producto (ej: talle S vs talle L).", "parent": null, "children": ["P198", "P199", "P200", "P201"]},
+"P198":{"text": "¿El consumo de componentes es flexible (cantidad libre) o con cantidad predeterminada?", "func": "Consumo componentes", "std": "Odoo permite configurar el consumo como Flexible (se puede modificar la cantidad al producir) o Bloqueado (la cantidad de la BOM no se puede modificar en la orden).", "parent": "P197", "children": null},
+"P199":{"text": "¿Cuántos niveles de fabricación se implementarán? (materia prima → semielaborado → terminado)", "func": "Niveles LM", "std": "Odoo soporta BOMs multinivel (sub-ensamblajes). Al fabricar el producto final, puede generar automáticamente las órdenes de fabricación de los subcomponentes.", "parent": "P197", "children": null},
+"P200":{"text": "¿Se registrarán subproductos resultantes del proceso de fabricación?", "func": "Subproductos", "std": "Odoo Manufacturing permite registrar subproductos en la BOM. Al completar la orden, los subproductos se agregan automáticamente al stock con su propio costo calculado.", "parent": "P197", "children": null},
+"P201":{"text": "¿Qué tipos de LM o procesos se utilizarán? (fabricar, subcontratación, kit)", "func": "Tipos LM", "std": "Odoo soporta tres tipos de BOM: Fabricar (producción interna), Subcontratación (producción por tercero) y Kit (conjunto que se desglosa al vender o entregar).", "parent": "P197", "children": null},
+"P204":{"text": "¿En cuántos pasos se harán las órdenes de fabricación? (1: fabricar; 2: + recoger; 3: + almacenar)", "func": "Pasos fabricación", "std": "Odoo configura las órdenes en 1, 2 o 3 pasos. En 3 pasos: se recogen los componentes (Picking), luego se fabrica y finalmente se almacena el producto terminado.", "parent": null, "children": null},
+"P205":{"text": "¿Qué nivel de automatización se definirá? (órdenes automáticas desde ventas, reglas de reabastecimiento, etc.)", "func": "Automatización", "std": "Odoo puede generar órdenes de fabricación automáticamente desde una venta confirmada (ruta Fabricar bajo pedido) o desde las reglas de reorden cuando el stock cae al mínimo.", "parent": null, "children": null},
+"P206":{"text": "¿Se crearán centros de producción (puestos de trabajo) con operaciones asignadas?", "func": "Centros producción", "std": "Los Centros de Trabajo representan máquinas, líneas o áreas de producción. Cada uno tiene: eficiencia de tiempo, capacidad concurrente, tiempos de setup/cleanup y costo por hora.", "parent": null, "children": ["P207", "P208", "P209"]},
+"P207":{"text": "¿Cuáles son las parametrizaciones de los centros? (capacidad, eficiencia, costo por hora máquina/operario)", "func": "Parametrización centros", "std": "Odoo permite configurar por centro: Eficiencia de Tiempo (%), Capacidad Máxima Simultánea, Tiempo de Setup y Cleanup (min), Costo/hora máquina y Costo/hora mano de obra.", "parent": "P206", "children": null},
+"P208":{"text": "¿Qué operaciones se llevarán a cabo y qué características tienen?", "func": "Operaciones", "std": "Las Operaciones de Trabajo se asignan a la BOM y se vinculan a un Centro de Trabajo. Cada operación tiene su duración estándar, instrucciones y puede tener controles de calidad.", "parent": "P206", "children": null},
+"P209":{"text": "¿Se requerirá un timer para registrar el tiempo de producción o se carga manualmente?", "func": "Timer producción", "std": "Odoo Manufacturing incluye un Timer (cronómetro) en la vista del operario (Shop Floor) para registrar el tiempo real de cada operación. El tiempo también puede cargarse manualmente.", "parent": "P206", "children": null},
+"P211":{"text": "¿De qué productos se reconocerán mermas durante la fabricación?", "func": "Mermas fabricación", "std": "Las mermas se registran desde la orden de fabricación usando el botón Scrap. Los componentes o el producto terminado dañado se envían a una ubicación de desecho con registro contable.", "parent": null, "children": null},
+"P210":{"text": "¿Se requerirán controles de calidad integrados en las operaciones de fabricación?", "func": "Calidad fabricación", "std": "Odoo Quality permite insertar Puntos de Control de Calidad (QCPs) en las operaciones de fabricación. El operario debe completar el control antes de poder avanzar a la siguiente operación.", "parent": null, "children": ["P210b"]},
+"P210b":{"text": "¿Qué tipos de controles se aplicarán? ¿En qué puntos del proceso?", "func": "Puntos de control", "std": "Los controles en fabricación pueden ser: Aprobado/Fallido, medición numérica con tolerancias, toma de fotografía o instrucciones. Se disparan automáticamente al llegar a la operación.", "parent": "P210", "children": null},
+"GATE_KIT":{"text": "¿La empresa vende o produce productos de tipo kit (conjunto de componentes que se venden juntos)?", "func": "Módulo kits", "std": "Los Kits en Odoo son BOMs especiales. Al vender un kit, Odoo desglosa automáticamente los componentes en el albarán de entrega y descuenta cada componente del stock individualmente.", "parent": null, "children": ["P203"]},
+"P203":{"text": "¿Qué características tienen los kits? ¿Se desensamblan al momento de la venta o de la entrega?", "func": "Configuración kits", "std": "En Odoo los kits se desglosan en la entrega (la factura muestra el kit como un solo producto). No se fabrica el kit: se entregan los componentes individuales directamente del stock.", "parent": "GATE_KIT", "children": null},
+"GATE_MRP":{"text": "¿Se implementará un programa maestro de producción para planificar la fabricación?", "func": "MRP", "std": "El MPS de Odoo es una proyección visual de la demanda vs. stock de seguridad. Permite configurar mínimos/máximos de reposición y calcular los requerimientos de fabricación o compra.", "parent": null, "children": ["P212b"]},
+"P212b":{"text": "¿Cómo lo utilizan actualmente? ¿Qué criterios o reglas aplican para planificar?", "func": "Configuración MRP", "std": "El MPS toma en cuenta: demanda pronosticada (manual o desde ventas), stock de seguridad, stock disponible y órdenes de compra/fabricación en curso para calcular el plan de producción.", "parent": "GATE_MRP", "children": null},
+"P213":{"text": "¿Qué reportes se requieren en fabricación? (costos, eficiencia, mermas, cantidades producidas, etc.)", "func": "Reportes fabricación", "std": "Odoo Manufacturing incluye: Análisis de Órdenes (cantidades, eficiencia, duración real vs. esperada), reporte de mermas por producto y análisis de costos (materiales + mano de obra).", "parent": null, "children": null},
+"GATE_AF":{"text": "¿La empresa llevará un registro de activos fijos / bienes de uso en Odoo?", "func": "Módulo activos fijos", "std": "Odoo Accounting incluye el módulo de Activos Fijos de forma nativa: registro de bienes de uso, cálculo de amortizaciones automáticas, revalúos y gestión de bajas contables.", "parent": null, "children": ["P234", "P235", "P236"]},
+"P234":{"text": "¿Cómo se realizan los asientos de amortización? (manuales o automáticos)", "func": "Amortización", "std": "Odoo genera el plan de amortización automáticamente al crear el activo (basado en el valor, vida útil y método). Los asientos quedan en borrador y se confirman con un clic.", "parent": "GATE_AF", "children": null},
+"P235":{"text": "¿Cómo es el proceso de baja de los activos fijos?", "func": "Baja activos", "std": "La baja en Odoo registra el asiento de disposición: cancela amortizaciones pendientes, reconoce la ganancia o pérdida por venta/desecho y saca el bien del registro.", "parent": "GATE_AF", "children": null},
+"P236":{"text": "¿Qué métodos de amortización se utilizan? (línea recta, decreciente, etc.)", "func": "Métodos amortización", "std": "Odoo soporta: Línea Recta (cuota fija), Saldo Decreciente (cuota sobre el valor residual) y Saldo Decreciente con Conversión a Línea Recta cuando conviene.", "parent": "GATE_AF", "children": null},
+"P237":{"text": "¿Cómo se realiza la conciliación bancaria? ¿Con qué periodicidad? ¿Los extractos están disponibles en CSV/Excel?", "func": "Conciliación bancaria", "std": "Odoo permite importar extractos (OFX, CSV, CAMT) o sincronizar automáticamente con el banco. La conciliación empareja transacciones con facturas usando IA y modelos configurables.", "parent": null, "children": null},
+"P238":{"text": "¿Existen movimientos bancarios recurrentes que podrían automatizarse? (impuestos, cargos, intereses)", "func": "Modelos conciliación", "std": "Los Modelos de Conciliación permiten crear reglas automáticas: si el texto del extracto contiene comisión bancaria, crea automáticamente el asiento contable correspondiente.", "parent": null, "children": null},
+"P239":{"text": "¿Qué controles de caja se realizan? (arqueo, planilla de caja, etc.)", "func": "Control de caja", "std": "Odoo gestiona diarios de caja con registro de ingresos y egresos. El arqueo compara el saldo teórico del sistema con el efectivo contado y genera el asiento de diferencia automáticamente.", "parent": null, "children": null},
+"P241":{"text": "¿Trabajan con múltiples cajas y cuentas bancarias?", "func": "Multi-caja/banco", "std": "Odoo soporta múltiples diarios de banco y caja. Cada diario tiene su propia cuenta contable, moneda y secuencia de documentos. Los reportes pueden filtrar por diario o consolidarse.", "parent": null, "children": null},
+"P242":{"text": "¿Se realizan transferencias entre las distintas cuentas bancarias o cajas?", "func": "Transferencias", "std": "Las transferencias internas generan asientos de débito/crédito entre cuentas. El sistema maneja el estado en tránsito hasta que la transferencia se confirma en el destino.", "parent": null, "children": null},
+"P243":{"text": "¿Existen fondos fijos? ¿Cómo se reponen y rinden?", "func": "Fondos fijos", "std": "Los fondos fijos (caja chica) se gestionan como un diario de caja con saldo inicial. Las rendiciones se registran como gastos y la reposición como transferencia desde el banco principal.", "parent": null, "children": null},
+"P248":{"text": "¿Cómo es el proceso de cobro? ¿Quién lo realiza? ¿Necesita aprobación?", "func": "Proceso cobros", "std": "Los cobros en Odoo se registran desde la factura del cliente o desde Tesorería. El pago se vincula automáticamente a la factura y la concilia. Se pueden configurar flujos de aprobación básicos.", "parent": null, "children": null},
+"P249":{"text": "¿Se utilizan múltiples medios de cobro para cancelar una misma factura? (banco, efectivo, cheques, etc.)", "func": "Medios cobro", "std": "Odoo permite registrar múltiples pagos parciales para una misma factura, cada uno con su propio diario (banco, caja, cheque). La factura se marca como pagada al cubrir el total.", "parent": null, "children": null},
+"P250":{"text": "¿Qué seguimiento se realiza de las cobranzas? (cuentas vencidas, días de vencido, etc.)", "func": "Seguimiento cobranzas", "std": "Odoo incluye el Aging Report con agrupación por cliente y período de vencimiento (0-30, 31-60, 61-90 días). Permite enviar recordatorios automáticos de cobro por email.", "parent": null, "children": null},
+"P255":{"text": "¿Se realiza el cobro de más de una factura a la vez? ¿De forma total o parcial?", "func": "Cobros múltiples", "std": "Desde el módulo de Pagos, se puede registrar un cobro que se distribuye entre múltiples facturas del mismo cliente. El sistema aplica el pago contra las más antiguas automáticamente.", "parent": null, "children": null},
+"P257a":{"text": "¿Se realizan cobros por anticipado antes de emitir la factura?", "func": "Anticipos cobro", "std": "Odoo permite registrar un pago anticipado del cliente que queda como crédito. Al emitir la factura, se aplica el anticipo como pago parcial o total de forma automática.", "parent": null, "children": null},
+"P260":{"text": "¿Se emiten recibos como comprobante de cobro?", "func": "Recibos", "std": "Odoo genera automáticamente un recibo PDF por cada pago registrado. El formato es personalizable mediante las plantillas de documento QWeb.", "parent": null, "children": null},
+"GATE_CHQ":{"text": "¿La empresa opera con cheques? (propios, de terceros, diferidos, etc.)", "func": "Módulo cheques", "std": "Odoo soporta cheques propios y de terceros como medios de pago. El seguimiento del ciclo del cheque (emitido, en cartera, depositado, cobrado) se gestiona por diarios específicos.", "parent": null, "children": ["P254b", "P254c"]},
+"P254b":{"text": "¿Se trabaja con cheques diferidos propios y/o de terceros? ¿Con qué plazos habituales?", "func": "Cheques diferidos", "std": "Los cheques diferidos (post-datados) en Odoo se registran con su fecha de cobro futura. El sistema puede programar el depósito automático o alertar al llegar la fecha de vencimiento.", "parent": "GATE_CHQ", "children": null},
+"P254c":{"text": "¿La numeración de cheques es manual o electrónica (ECheq)?", "func": "Numeración cheques", "std": "Odoo permite ingresar el número de cheque manualmente. La integración con el sistema de ECheq (cheque electrónico) de Argentina requiere módulos de localización específicos o desarrollo.", "parent": "GATE_CHQ", "children": null},
+"P251":{"text": "¿Cómo es el proceso de pago a proveedores? ¿Quién lo realiza? ¿Necesita aprobación?", "func": "Proceso pagos", "std": "Los pagos a proveedores se registran desde la factura del proveedor o desde Pagos. Se pueden configurar aprobaciones por monto antes de ejecutar el pago.", "parent": null, "children": null},
+"P252":{"text": "¿Se utilizan múltiples medios de pago para cancelar una misma factura?", "func": "Medios pago", "std": "Odoo permite cancelar una factura de proveedor con múltiples pagos parciales en distintos diarios (banco, cheque propio, anticipo). La factura se marca como pagada al cubrir el total.", "parent": null, "children": null},
+"P253":{"text": "¿Qué seguimiento se realiza de los pagos? (cuentas corrientes con proveedores, días de vencido, etc.)", "func": "Seguimiento pagos", "std": "Odoo incluye el Aging Report de proveedores agrupado por proveedor y período de vencimiento. También muestra el saldo de cuenta corriente por proveedor.", "parent": null, "children": null},
+"P257b":{"text": "¿Se realizan pagos por anticipado a proveedores?", "func": "Anticipos pago", "std": "Los anticipos a proveedores se registran como pagos sin factura vinculada. Quedan como crédito en la cuenta del proveedor y se aplican automáticamente al llegar la factura definitiva.", "parent": null, "children": null},
+"P258":{"text": "¿Se realizan pagos por lotes? (agrupar varios pagos al mismo proveedor)", "func": "Lotes pago", "std": "Odoo permite crear Pagos por Lotes: agrupa múltiples pagos del mismo diario y genera un único asiento de banco. Útil para transferencias masivas o presentaciones SEPA.", "parent": null, "children": null},
+"P259":{"text": "¿Qué plazos / términos de pago se utilizan? (inmediato, 30 días, 60 días, etc.)", "func": "Términos pago", "std": "Los Términos de Pago de Odoo son altamente configurables: múltiples cuotas con % y vencimientos distintos, descuentos por pronto pago y condiciones de fecha especial.", "parent": null, "children": null},
+"GATE_ME":{"text": "¿La empresa opera en moneda extranjera? (cobros, pagos o facturas en USD, EUR, etc.)", "func": "Operaciones ME", "std": "Odoo gestiona la multidivisa de forma nativa. Las facturas en moneda extranjera se convierten al TC del día. Al cobrar/pagar, si el TC cambió, Odoo registra automáticamente la diferencia de cambio.", "parent": null, "children": ["P262", "P263", "P264"]},
+"P262":{"text": "¿Se reconocen diferencias de cambio cuando el pago está a un TC distinto al de la factura?", "func": "Dif. cambio", "std": "Sí, Odoo calcula y registra automáticamente la ganancia o pérdida por diferencia de cambio al momento del pago, cuando el TC es distinto al de la factura original.", "parent": "GATE_ME", "children": null},
+"P263":{"text": "¿Se actualiza la tasa de cambio automáticamente según AFIP?", "func": "TC automático AFIP", "std": "Odoo puede actualizar tipos de cambio automáticamente desde fuentes externas. La integración con el TC oficial de AFIP requiere configuración del proveedor de TC o módulo de localización.", "parent": "GATE_ME", "children": null},
+"P264":{"text": "¿Se trabaja con extractos bancarios en moneda extranjera?", "func": "Extractos ME", "std": "Odoo permite importar y conciliar extractos bancarios en moneda extranjera. Las diferencias de cambio entre el extracto y los pagos registrados se calculan y contabilizan automáticamente.", "parent": "GATE_ME", "children": null},
+"P265":{"text": "¿Qué alícuotas de IVA se aplican sobre ventas y compras?", "func": "IVA", "std": "Odoo permite configurar múltiples grupos de impuestos con distintas alícuotas y cuentas contables. Se asignan por producto o posición fiscal y se calculan automáticamente en facturas.", "parent": null, "children": null},
+"P266":{"text": "¿Se requiere la presentación del Libro IVA Digital Compras / Ventas?", "func": "Libro IVA Digital", "std": "El Libro IVA Digital requerido por AFIP es una funcionalidad de localización Argentina. Existen módulos OCA y comerciales que generan el archivo SIAP en el formato requerido.", "parent": null, "children": null},
+"P278":{"text": "¿Será necesario configurar posiciones fiscales? (cambio automático de impuestos según tipo de cliente/operación)", "func": "Posiciones fiscales", "std": "Las Posiciones Fiscales mapean automáticamente impuestos y cuentas contables según el tipo de cliente (exento, monotributista, exterior). Se asignan por cliente o por reglas geográficas.", "parent": null, "children": null},
+"P279":{"text": "¿Con qué tipos de documentos de identificación se trabaja? (CUIT, CUIL, DNI)", "func": "Documentos AFIP", "std": "El módulo de localización argentina (l10n_ar) incluye los tipos de identificación AFIP: CUIT, CUIL, DNI, CDI y pasaporte. Se configuran en la ficha de cada contacto.", "parent": null, "children": null},
+"P301":{"text": "¿Las facturas se emitirán desde Odoo o se emiten en AFIP y luego se importan?", "func": "Facturación electrónica", "std": "La localización argentina (l10n_ar) permite emitir Facturas Electrónicas directamente desde Odoo conectándose con AFIP vía web service. Genera el CAE automáticamente al confirmar la factura.", "parent": null, "children": null},
+"P302":{"text": "¿Con qué tipos de comprobantes se trabaja? (FAC A, FAC B, MiPyME, Bono fiscal, etc.)", "func": "Tipos comprobantes", "std": "La localización argentina incluye los tipos de comprobantes AFIP: Factura A, B, C, Nota de Crédito A/B/C, MiPyME y Bono Fiscal. Se seleccionan automáticamente según el tipo de responsable del cliente.", "parent": null, "children": null},
+"GATE_RIVA":{"text": "¿La empresa actúa como agente de retención de IVA o sufre retenciones de IVA?", "func": "Retenciones IVA", "std": "Las retenciones de IVA en Argentina son una funcionalidad de localización. Existen módulos OCA y comerciales que gestionan la retención automática en pagos y generan los archivos SICORE.", "parent": null, "children": ["P267", "P268"]},
+"P267":{"text": "¿La empresa es agente de retención de IVA? ¿Qué régimen? ¿Qué presentaciones debe hacer?", "func": "Agente ret. IVA", "std": "El módulo de retenciones de la localización argentina permite configurar los regímenes de retención de IVA y generar automáticamente el comprobante de retención al pagar.", "parent": "GATE_RIVA", "children": null},
+"P268":{"text": "¿La empresa sufre retenciones de IVA? ¿Qué regímenes?", "func": "Ret. IVA sufrida", "std": "Las retenciones sufridas se registran como crédito fiscal al momento del cobro. La localización argentina permite registrarlas y generar el reporte de retenciones sufridas del período.", "parent": "GATE_RIVA", "children": null},
+"GATE_RG":{"text": "¿La empresa actúa como agente de retención de Ganancias o sufre retenciones de Ganancias?", "func": "Retenciones Ganancias", "std": "Las retenciones de Ganancias en Argentina se gestionan con módulos de localización. Se calcula la retención automáticamente al registrar el pago, según el régimen y el padrón de AFIP.", "parent": null, "children": ["P269", "P270"]},
+"P269":{"text": "¿La empresa es agente de retención de Ganancias? ¿Qué regímenes? ¿Qué presentaciones hace? (ej: SICORE)", "func": "Agente ret. Ganancias", "std": "El módulo de localización permite generar el archivo SICORE para la presentación mensual ante AFIP. Las retenciones se calculan automáticamente según el régimen configurado.", "parent": "GATE_RG", "children": null},
+"P270":{"text": "¿La empresa sufre retenciones de Ganancias? ¿Qué regímenes?", "func": "Ret. Ganancias sufrida", "std": "Las retenciones de Ganancias sufridas se registran al momento del cobro. La localización argentina permite registrarlas y acreditarlas contra los impuestos a pagar del período.", "parent": "GATE_RG", "children": null},
+"GATE_IIBB":{"text": "¿La empresa actúa como agente de retención de IIBB o sufre retenciones de IIBB?", "func": "Retenciones IIBB", "std": "Las retenciones de IIBB provinciales se gestionan con módulos de localización argentina. Las alícuotas varían por provincia y padrón (ARBA, AGIP, etc.) y se actualizan periódicamente.", "parent": null, "children": ["P272", "P273", "P274"]},
+"P272":{"text": "¿La empresa es agente de retención de IIBB? ¿De qué provincias?", "func": "Agente ret. IIBB", "std": "El módulo de IIBB permite configurar alícuotas de retención por provincia y tipo de proveedor. Genera el comprobante de retención al pagar y los archivos de presentación por jurisdicción.", "parent": "GATE_IIBB", "children": null},
+"P273":{"text": "¿La empresa sufre retenciones de IIBB? ¿De qué provincias?", "func": "Ret. IIBB sufrida", "std": "Las retenciones de IIBB sufridas se registran al cobrar. La localización permite registrarlas y generar el reporte de retenciones sufridas por provincia para la declaración jurada.", "parent": "GATE_IIBB", "children": null},
+"P274":{"text": "¿Se requiere conexión con ARBA para actualizar el padrón y alícuotas mensualmente?", "func": "ARBA", "std": "La integración con ARBA para actualización automática del padrón de alícuotas de IIBB requiere un módulo de localización específico o desarrollo a medida.", "parent": "GATE_IIBB", "children": null},
+"GATE_ANA":{"text": "¿La empresa utiliza contabilidad analítica para análisis de costos o centros de costo?", "func": "Contabilidad analítica", "std": "Odoo Accounting incluye Planes Analíticos y Cuentas Analíticas de forma nativa. Las líneas de factura, compra y gastos pueden imputarse a cuentas analíticas para análisis de rentabilidad.", "parent": null, "children": ["P298", "P299"]},
+"P298":{"text": "¿Se utilizarán modelos de distribución analítica automáticos?", "func": "Distribución analítica", "std": "Odoo permite crear Modelos de Distribución Analítica: cuando se registra un asiento en determinada cuenta, el sistema distribuye automáticamente el importe entre cuentas analíticas según %.", "parent": "GATE_ANA", "children": null},
+"P299":{"text": "¿Se definirán múltiples planes de cuentas analíticas?", "func": "Planes analíticos", "std": "Odoo soporta múltiples Planes Analíticos simultáneos (ej: un plan por área de negocio y otro por proyecto). Cada asiento puede tener distribuciones en todos los planes activos.", "parent": "GATE_ANA", "children": null},
+"GATE_PRES":{"text": "¿La empresa necesita implementar un módulo de control presupuestario?", "func": "Control presupuestario", "std": "Odoo Accounting incluye el módulo de Presupuestos: permite definir montos presupuestados por cuenta analítica y período, comparando el presupuesto vs. lo ejecutado en tiempo real.", "parent": null, "children": ["P294b"]},
+"P294b":{"text": "¿Sobre qué áreas o cuentas se controlará el presupuesto? ¿Con qué periodicidad?", "func": "Configuración presupuesto", "std": "Los presupuestos en Odoo se definen por Posición Presupuestaria (cuentas contables), Cuenta Analítica y período. El reporte muestra el avance % y el desvío en tiempo real.", "parent": "GATE_PRES", "children": null},
+"P283":{"text": "¿Qué reportes contables se utilizarán? (ESP, EERR, EFE, Libro Mayor, Balances de Sumas y Saldos)", "func": "Reportes contables", "std": "Odoo Accounting incluye: Balance General, Estado de Resultados, Libro Mayor, Balance de Sumas y Saldos y Flujo de Efectivo. Todos configurables y exportables a PDF y Excel.", "parent": null, "children": null},
+"P284":{"text": "¿Qué reportes se utilizarán para controlar cobranzas y pagos? (cuentas corrientes, vencidos, etc.)", "func": "Reportes tesorería", "std": "Odoo incluye: Aging Report de cuentas por cobrar y por pagar, estado de cuenta por cliente/proveedor, facturas vencidas y reporte de liquidez. Filtrables por período, moneda y estado.", "parent": null, "children": null},
+"P285":{"text": "¿Qué información se requiere visualizar en el análisis de facturas?", "func": "Análisis facturas", "std": "El Análisis de Facturas permite visualizar en tabla dinámica: importe, impuesto, descuento, estado, vendedor, producto, cliente, período y diario. Exportable a Excel.", "parent": null, "children": null},
+"P288":{"text": "¿Se requieren reportes personalizados que no existen en el estándar de Odoo?", "func": "Reportes personalizados", "std": "Odoo permite crear reportes personalizados usando el motor de análisis nativo o mediante módulos de BI como Odoo Spreadsheets o integraciones con Power BI.", "parent": null, "children": null},
+"GATE_PRO":{"text": "¿La empresa gestiona proyectos y desea utilizar el módulo de Proyectos de Odoo?", "func": "Módulo proyectos", "std": "Odoo Project gestiona proyectos con tableros Kanban, vistas de Gantt, lista y calendario. Incluye seguimiento de tareas, comunicación, adjuntos y dependencias entre tareas.", "parent": null, "children": null},
+"P323":{"text": "¿Qué tipo de proyectos gestionan? (internos, de cliente, por contrato, etc.)", "func": "Tipo proyectos", "std": "Cada proyecto puede configurarse como interno o de cliente (vinculado a una cuenta y facturable). Los proyectos de cliente se integran con Ventas para la facturación.", "parent": null, "children": null},
+"P324":{"text": "¿Qué herramientas o sistemas utilizan actualmente para gestionar proyectos?", "func": "Herramientas actuales", "std": "Odoo Project reemplaza herramientas como Trello, Asana o MS Project. Tiene Kanban, Gantt (con dependencias), lista, calendario y tablero de actividades integrado al ERP.", "parent": null, "children": null},
+"P325":{"text": "¿Qué nivel de acceso deberían tener los diferentes roles dentro del módulo?", "func": "Permisos", "std": "Odoo permite configurar la visibilidad del proyecto: público, privado (solo miembros invitados) o interno (todos los empleados). Los permisos de edición se controlan por rol.", "parent": null, "children": null},
+"P327":{"text": "¿Necesitan almacenar documentos relacionados con el proyecto en Odoo?", "func": "Adjuntos", "std": "Cada tarea y proyecto permite adjuntar archivos (PDF, imágenes, hojas de cálculo). También se integra con Google Drive y OneDrive para documentos externos.", "parent": null, "children": null},
+"P330":{"text": "¿Cuáles son las etapas que utilizan dentro de los proyectos? ¿Cada proyecto tiene sus propias etapas?", "func": "Etapas", "std": "En Odoo, las etapas de tareas pueden ser compartidas entre proyectos o específicas de cada uno. Se configuran desde el tablero Kanban arrastrando y soltando columnas.", "parent": null, "children": null},
+"P331":{"text": "¿Cómo desean organizar los proyectos? (por clientes, equipos, categoría, etc.)", "func": "Organización", "std": "Los proyectos se organizan con etiquetas, por cliente, por responsable y por favoritos. La vista de lista y el agrupamiento permiten organizar por cualquier campo del proyecto.", "parent": null, "children": null},
+"P332":{"text": "¿En la gestión trabajan con hitos, tareas y subtareas?", "func": "Hitos y tareas", "std": "Odoo Project soporta Hitos (Milestones) como objetivos con fecha límite, tareas principales y subtareas. Los hitos se muestran en el Gantt como puntos de control del proyecto.", "parent": null, "children": null},
+"P338":{"text": "¿Necesitan que al vender un producto se dispare automáticamente un proyecto o una tarea?", "func": "Automatización", "std": "Odoo permite configurar productos de tipo Servicio que al venderse generan automáticamente un proyecto o una tarea dentro de un proyecto existente.", "parent": null, "children": null},
+"P340":{"text": "¿Existen tareas recurrentes en los proyectos que deban crearse más de una vez?", "func": "Tareas recurrentes", "std": "Odoo permite configurar tareas recurrentes con frecuencia diaria, semanal, mensual o personalizada. La tarea se crea automáticamente al llegar la fecha configurada.", "parent": null, "children": null},
+"P341":{"text": "¿Cómo se asignan los recursos a las tareas? (empleados individuales, equipos)", "func": "Asignación recursos", "std": "Las tareas en Odoo pueden asignarse a uno o varios usuarios. El módulo de Planificación (Planning) complementa la asignación con una vista de capacidad por empleado.", "parent": null, "children": null},
+"P342":{"text": "¿Es importante controlar la carga de horas de trabajo de los recursos?", "func": "Hojas de horas", "std": "Odoo Timesheets permite registrar horas por tarea y proyecto. Los empleados cargan su tiempo desde la tarea, la app móvil o el timer. El módulo integra con nómina y facturación.", "parent": null, "children": null},
+"P335":{"text": "¿Es importante la integración con contabilidad para facturar horas o hitos del proyecto?", "func": "Integración contable", "std": "Odoo integra Proyectos con Ventas y Facturación. Se puede facturar por horas registradas (tiempo y material), por hitos alcanzados o por precio fijo, todo desde la misma orden de venta.", "parent": null, "children": ["P337", "P343"]},
+"P337":{"text": "¿Se utilizan cuentas analíticas para imputar las horas trabajadas?", "func": "Analítica", "std": "Odoo Timesheets permite imputar las horas a cuentas analíticas automáticamente. Esto permite analizar el costo real de los proyectos vs. el presupuesto analítico asignado.", "parent": "P335", "children": null},
+"P343":{"text": "¿Cómo se gestionará la facturación de proyectos? (por hora, por hito, precio fijo)", "func": "Modelo facturación", "std": "Odoo soporta tres modelos: Precio Fijo (factura al cerrar), Tiempo y Material (factura las horas registradas) y por Hitos (factura al aprobar cada hito del proyecto).", "parent": "P335", "children": null},
+"P344":{"text": "¿Qué información desean rastrear sobre el progreso de proyectos? (costos, tiempos, tareas completadas, etc.)", "func": "Reportes", "std": "Odoo Project incluye reportes de avance de tareas, horas registradas vs. estimadas, rentabilidad del proyecto (ingresos vs. costos de horas y materiales) y KPIs configurables.", "parent": null, "children": null},
+"GATE_MAN":{"text": "¿La empresa realiza mantenimiento de equipos, maquinaria o activos propios?", "func": "Módulo mantenimiento", "std": "Odoo Maintenance gestiona solicitudes de mantenimiento correctivo y calendarios de mantenimiento preventivo. Se integra con los Centros de Trabajo de Fabricación.", "parent": null, "children": null},
+"P214":{"text": "¿Realizan mantenimientos internos o también envían equipos a reparar externamente?", "func": "Tipo mantenimiento", "std": "Odoo Maintenance soporta mantenimiento interno (asignado a técnicos propios) y solicitudes a proveedores externos. En ambos casos se registra el costo de la intervención.", "parent": null, "children": null},
+"P215":{"text": "¿Cómo es la gestión actual? ¿Qué información se registra sobre cada intervención?", "func": "Proceso actual", "std": "Las Solicitudes de Mantenimiento registran: equipo, tipo, descripción del problema, técnico responsable, fecha solicitada, fecha de resolución y costo de la intervención.", "parent": null, "children": null},
+"P216":{"text": "¿Trabajan con etapas en el proceso de mantenimiento? (nuevo, en progreso, completado, etc.)", "func": "Etapas", "std": "El módulo usa un tablero Kanban con etapas configurables. Por defecto incluye: Nueva Solicitud, En Progreso y Reparado. Se pueden agregar o modificar etapas libremente.", "parent": null, "children": null},
+"P220":{"text": "¿Cuáles serán los roles de usuario y sus funciones dentro del módulo?", "func": "Permisos", "std": "Odoo Maintenance tiene dos roles: Usuario (puede crear solicitudes) y Administrador (configura equipos, crea órdenes de mantenimiento preventivo y accede a reportes).", "parent": null, "children": null},
+"P224":{"text": "¿Es necesario asignar prioridad a las solicitudes de mantenimiento?", "func": "Prioridad", "std": "Las solicitudes tienen un campo de prioridad (Normal, Urgente) y una calificación de 1 a 3 estrellas para categorizar la criticidad de la intervención.", "parent": null, "children": null},
+"P225":{"text": "¿Se realizan mantenimientos preventivos periódicos sobre los mismos equipos?", "func": "Mantenimiento preventivo", "std": "Odoo Maintenance permite configurar calendarios de Mantenimiento Preventivo por equipo, con frecuencia configurable. Las solicitudes se generan automáticamente al llegar la fecha.", "parent": null, "children": null},
+"P227":{"text": "¿Utilizan número de serie para identificar los equipos a mantener?", "func": "Nro. serie equipos", "std": "Los Equipos en Odoo Maintenance tienen un campo de Número de Serie para identificación única. También se puede vincular a un Número de Serie de Inventario si el equipo fue comprado por Odoo.", "parent": null, "children": null},
+"P228":{"text": "¿Necesitan llevar un registro de todos los activos y herramientas sobre los que hacen mantenimiento?", "func": "Registro activos", "std": "El módulo de Equipos crea un registro de cada equipo con: nombre, categoría, modelo, fabricante, número de serie, fecha de compra y empleado responsable.", "parent": null, "children": null},
+"P229":{"text": "¿Tienen diferentes centros de trabajo o áreas de mantenimiento?", "func": "Centros trabajo", "std": "Los equipos se pueden asignar a un Centro de Trabajo. Al solicitar mantenimiento de ese equipo, el sistema registra automáticamente el tiempo que el centro estuvo inoperativo.", "parent": null, "children": null},
+"P230":{"text": "¿Necesitan integrar el módulo de mantenimiento con el de fabricación?", "func": "Integración fabricación", "std": "Odoo integra Maintenance con Manufacturing de forma nativa. Desde un Centro de Trabajo se puede crear una solicitud de mantenimiento. El equipo inoperativo aparece en la planificación.", "parent": null, "children": null},
+"P231":{"text": "¿Necesitan registrar las horas trabajadas en cada solicitud de mantenimiento? (puede requerir desarrollo)", "func": "Horas trabajadas", "std": "En el estándar de Odoo, las solicitudes de mantenimiento no tienen registro detallado de horas por técnico. Para este nivel de detalle se requiere integración con Timesheets o desarrollo.", "parent": null, "children": null},
+"P232":{"text": "¿Qué reportes se necesitan sobre los mantenimientos realizados? (por equipo, técnico, costo, etc.)", "func": "Reportes", "std": "Odoo Maintenance incluye el análisis de solicitudes filtrable por equipo, técnico, tipo (correctivo/preventivo) y período. También muestra el MTBF (tiempo medio entre fallos) por equipo.", "parent": null, "children": null},
+"GATE_REP":{"text": "¿La empresa realiza reparaciones de productos pertenecientes a sus clientes?", "func": "Módulo reparaciones", "std": "Odoo Repairs gestiona órdenes de reparación: registro del producto, diagnóstico, piezas utilizadas, mano de obra, facturación al cliente y control del stock de repuestos.", "parent": null, "children": null},
+"P314":{"text": "¿Cómo es el proceso actual cuando ingresa un producto a reparar?", "func": "Proceso", "std": "El flujo estándar es: crear orden, diagnóstico, agregar piezas y mano de obra, confirmar, iniciar (consume piezas del stock), completar y facturar al cliente.", "parent": null, "children": null},
+"P315":{"text": "¿Utilizan número de serie para identificar los productos a reparar?", "func": "Nro. serie", "std": "Odoo Repairs permite asociar el producto a reparar con su Número de Serie de inventario. Esto vincula la reparación al historial de movimientos del producto específico.", "parent": null, "children": null},
+"P316":{"text": "¿Cuántos depósitos o áreas manejan para los productos en proceso de reparación?", "func": "Depósitos", "std": "Odoo Repairs permite configurar la ubicación de origen (antes de reparar) y la de destino (después de reparar). Ambas pueden ser ubicaciones específicas del almacén.", "parent": null, "children": null},
+"P317":{"text": "¿Al ingresar un producto a reparar se le entrega algún comprobante o recibo al cliente?", "func": "Documentación cliente", "std": "Odoo genera automáticamente el documento de la Orden de Reparación en PDF que puede enviarse al cliente como recibo de ingreso. El formato es personalizable mediante plantillas QWeb.", "parent": null, "children": null},
+"P318":{"text": "¿Llevan registro del tiempo invertido y los materiales utilizados en cada reparación?", "func": "Tiempo y materiales", "std": "Odoo Repairs permite registrar Piezas utilizadas (con consumo de stock y costo) y Mano de Obra (con costo por hora). Ambos se agregan automáticamente a la factura al cerrar la reparación.", "parent": null, "children": null},
+"P319":{"text": "¿Clasifican las órdenes de reparación con etiquetas o categorías?", "func": "Clasificación", "std": "Las Órdenes de Reparación se pueden clasificar con etiquetas (tags) personalizadas. También tienen campos de tipo de garantía y motivo de la reparación para análisis y filtrado.", "parent": null, "children": null},
+"P320":{"text": "¿Adjuntan documentos, fotos o archivos a las órdenes de reparación?", "func": "Adjuntos", "std": "Cada Orden de Reparación permite adjuntar archivos desde el Chatter: fotos del producto dañado, diagnósticos en PDF, videos o cualquier documento relevante.", "parent": null, "children": null},
+"P321":{"text": "¿Generan algún tipo de informe sobre las reparaciones realizadas?", "func": "Informes", "std": "Odoo Repairs incluye reportes de órdenes filtrables por estado, cliente, producto y período. Se puede analizar el tiempo de reparación, costo de piezas y facturación generada.", "parent": null, "children": null},
+"P322":{"text": "¿Les resultaría útil crear cotizaciones para el cliente a partir de una solicitud de reparación?", "func": "Cotizaciones reparación", "std": "Odoo permite generar una Cotización de Ventas desde una Orden de Reparación para que el cliente apruebe el presupuesto antes de iniciar el trabajo. El cliente puede aprobar desde su portal.", "parent": null, "children": null}
+};
+const MODS_STRUCT=[
+{
+"id": "comercial",
+"label": "Comercial",
+"sections": [
+{
+"title": "General",
+"gate": null,
+"qIds": [
+"P17",
+"P18",
+"P19",
+"P20"
+]
+},
+{
+"title": "Oportunidades (CRM)",
+"gate": null,
+"qIds": [
+"P21",
+"P22",
+"P23",
+"P24",
+"P25",
+"P26",
+"P27",
+"P28",
+"P29"
+]
+},
+{
+"title": "Presupuesto / Cotización",
+"gate": null,
+"qIds": [
+"P32",
+"P33",
+"P34",
+"P35",
+"P36",
+"P36b",
+"P37",
+"P38",
+"P39",
+"P40",
+"P44",
+"P45",
+"P47",
+"P48",
+"P50",
+"P51",
+"P53"
+]
+},
+{
+"title": "Listas de precios",
+"gate": null,
+"qIds": [
+"P55",
+"P56",
+"P57",
+"P58"
+]
+},
+{
+"title": "Programas de fidelidad",
+"gate": null,
+"qIds": [
+"P59",
+"P60",
+"P61",
+"P62",
+"P63",
+"P64",
+"P65"
+]
+},
+{
+"title": "Equipos de ventas",
+"gate": null,
+"qIds": [
+"P66",
+"P67",
+"P68"
+]
+},
+{
+"title": "Orden de venta",
+"gate": null,
+"qIds": [
+"P69",
+"P70",
+"P70b",
+"P90",
+"P91",
+"P93",
+"P94"
+]
+},
+{
+"title": "Punto de venta (POS)",
+"gate": "GATE_POS",
+"qIds": [
+"GATE_POS",
+"P86",
+"P87",
+"P88",
+"P89"
+]
+},
+{
+"title": "E-commerce",
+"gate": "GATE_EC",
+"qIds": [
+"GATE_EC",
+"P10",
+"P11",
+"P12",
+"P13",
+"P14",
+"P15",
+"P74",
+"P78",
+"P79",
+"P81",
+"P83",
+"P84"
+]
+},
+{
+"title": "Reportes comerciales",
+"gate": null,
+"qIds": [
+"P105",
+"P106",
+"P107",
+"P108"
+]
+}
+]
+},
+{
+"id": "compras",
+"label": "Compras",
+"sections": [
+{
+"title": "General",
+"gate": null,
+"qIds": [
+"C01",
+"C02"
+]
+},
+{
+"title": "Requisiciones",
+"gate": "GATE_REQ",
+"qIds": [
+"GATE_REQ",
+"P113",
+"P113b"
+]
+},
+{
+"title": "Solicitud de cotización",
+"gate": null,
+"qIds": [
+"P115",
+"P117",
+"P120",
+"P122",
+"P128",
+"P132",
+"P133",
+"P136",
+"P138",
+"P139",
+"P141"
+]
+},
+{
+"title": "Subcontratación",
+"gate": "GATE_SUB",
+"qIds": [
+"GATE_SUB",
+"P140b",
+"P140c"
+]
+},
+{
+"title": "Recepción y facturación de compras",
+"gate": null,
+"qIds": [
+"P142",
+"P146",
+"P149",
+"P150",
+"P151"
+]
+},
+{
+"title": "Reportes de compras",
+"gate": null,
+"qIds": [
+"P153",
+"P154"
+]
+}
+]
+},
+{
+"id": "inventario",
+"label": "Inventario",
+"sections": [
+{
+"title": "Configuración general",
+"gate": null,
+"qIds": [
+"P155",
+"P156",
+"P158",
+"GATE_UBI",
+"P161",
+"P163",
+"P157",
+"P160"
+]
+},
+{
+"title": "Trazabilidad",
+"gate": "GATE_TRAZ",
+"qIds": [
+"GATE_TRAZ",
+"P164b",
+"P165"
+]
+},
+{
+"title": "Valoración de inventario",
+"gate": null,
+"qIds": [
+"P167",
+"P168",
+"P169",
+"GATE_LC",
+"P170b"
+]
+},
+{
+"title": "Proceso de recepción",
+"gate": null,
+"qIds": [
+"P171",
+"P172"
+]
+},
+{
+"title": "Proceso de entrega",
+"gate": null,
+"qIds": [
+"P173",
+"P174",
+"P175",
+"P182",
+"P180",
+"P183",
+"P184"
+]
+},
+{
+"title": "Operaciones avanzadas de depósito",
+"gate": "GATE_OPD",
+"qIds": [
+"GATE_OPD",
+"P178",
+"P179"
+]
+},
+{
+"title": "Control de calidad en inventario",
+"gate": "GATE_CAL",
+"qIds": [
+"GATE_CAL",
+"P185b"
+]
+},
+{
+"title": "Ajustes de stock",
+"gate": null,
+"qIds": [
+"P186",
+"P187"
+]
+},
+{
+"title": "Códigos de barras",
+"gate": "GATE_CB",
+"qIds": [
+"GATE_CB",
+"P166b"
+]
+},
+{
+"title": "Reportes de inventario",
+"gate": null,
+"qIds": [
+"P188",
+"P190",
+"P193",
+"P194"
+]
+}
+]
+},
+{
+"id": "fabricacion",
+"label": "Fabricación",
+"sections": [
+{
+"title": "¿Se fabrica?",
+"gate": null,
+"qIds": [
+"GATE_FAB"
+]
+},
+{
+"title": "Lista de materiales (LM)",
+"gate": "GATE_FAB",
+"qIds": [
+"P196",
+"P197",
+"P198",
+"P199",
+"P200",
+"P201"
+]
+},
+{
+"title": "Centros de producción y operaciones",
+"gate": "GATE_FAB",
+"qIds": [
+"P204",
+"P205",
+"P206",
+"P207",
+"P208",
+"P209",
+"P211"
+]
+},
+{
+"title": "Control de calidad en fabricación",
+"gate": "GATE_FAB",
+"qIds": [
+"P210",
+"P210b"
+]
+},
+{
+"title": "Kits",
+"gate": "GATE_KIT",
+"qIds": [
+"GATE_KIT",
+"P203"
+]
+},
+{
+"title": "Programa maestro de producción (MRP)",
+"gate": "GATE_MRP",
+"qIds": [
+"GATE_MRP",
+"P212b"
+]
+},
+{
+"title": "Reportes de fabricación",
+"gate": "GATE_FAB",
+"qIds": [
+"P213"
+]
+}
+]
+},
+{
+"id": "contabilidad",
+"label": "Contabilidad",
+"sections": [
+{
+"title": "Activos fijos",
+"gate": "GATE_AF",
+"qIds": [
+"GATE_AF",
+"P234",
+"P235",
+"P236"
+]
+},
+{
+"title": "Caja y banco",
+"gate": null,
+"qIds": [
+"P237",
+"P238",
+"P239",
+"P241",
+"P242",
+"P243"
+]
+},
+{
+"title": "Cobros",
+"gate": null,
+"qIds": [
+"P248",
+"P249",
+"P250",
+"P255",
+"P257a",
+"P260"
+]
+},
+{
+"title": "Cheques",
+"gate": "GATE_CHQ",
+"qIds": [
+"GATE_CHQ",
+"P254b",
+"P254c"
+]
+},
+{
+"title": "Pagos",
+"gate": null,
+"qIds": [
+"P251",
+"P252",
+"P253",
+"P257b",
+"P258",
+"P259"
+]
+},
+{
+"title": "Diferencias de cambio",
+"gate": "GATE_ME",
+"qIds": [
+"GATE_ME",
+"P262",
+"P263",
+"P264"
+]
+},
+{
+"title": "Impuestos y regulatorio AFIP",
+"gate": null,
+"qIds": [
+"P265",
+"P266",
+"P278",
+"P279",
+"P301",
+"P302"
+]
+},
+{
+"title": "Retenciones de IVA",
+"gate": "GATE_RIVA",
+"qIds": [
+"GATE_RIVA",
+"P267",
+"P268"
+]
+},
+{
+"title": "Retenciones de Ganancias",
+"gate": "GATE_RG",
+"qIds": [
+"GATE_RG",
+"P269",
+"P270"
+]
+},
+{
+"title": "Retenciones de IIBB",
+"gate": "GATE_IIBB",
+"qIds": [
+"GATE_IIBB",
+"P272",
+"P273",
+"P274"
+]
+},
+{
+"title": "Contabilidad analítica",
+"gate": "GATE_ANA",
+"qIds": [
+"GATE_ANA",
+"P298",
+"P299"
+]
+},
+{
+"title": "Control presupuestario",
+"gate": "GATE_PRES",
+"qIds": [
+"GATE_PRES",
+"P294b"
+]
+},
+{
+"title": "Reportes contables",
+"gate": null,
+"qIds": [
+"P283",
+"P284",
+"P285",
+"P288"
+]
+}
+]
+},
+{
+"id": "proyectos",
+"label": "Proyectos",
+"sections": [
+{
+"title": "¿Se usa el módulo?",
+"gate": null,
+"qIds": [
+"GATE_PRO"
+]
+},
+{
+"title": "Configuración de proyecto",
+"gate": "GATE_PRO",
+"qIds": [
+"P323",
+"P324",
+"P325",
+"P327",
+"P330",
+"P331",
+"P332",
+"P338"
+]
+},
+{
+"title": "Tareas y hojas de horas",
+"gate": "GATE_PRO",
+"qIds": [
+"P340",
+"P341",
+"P342"
+]
+},
+{
+"title": "Facturación de proyectos",
+"gate": "GATE_PRO",
+"qIds": [
+"P335",
+"P337",
+"P343"
+]
+},
+{
+"title": "Reportes de proyectos",
+"gate": "GATE_PRO",
+"qIds": [
+"P344"
+]
+}
+]
+},
+{
+"id": "mantenimiento",
+"label": "Mantenimiento",
+"sections": [
+{
+"title": "¿Se usa el módulo?",
+"gate": null,
+"qIds": [
+"GATE_MAN"
+]
+},
+{
+"title": "Configuración de mantenimiento",
+"gate": "GATE_MAN",
+"qIds": [
+"P214",
+"P215",
+"P216",
+"P220",
+"P224",
+"P225"
+]
+},
+{
+"title": "Equipos y activos",
+"gate": "GATE_MAN",
+"qIds": [
+"P227",
+"P228",
+"P229",
+"P230",
+"P231"
+]
+},
+{
+"title": "Reportes de mantenimiento",
+"gate": "GATE_MAN",
+"qIds": [
+"P232"
+]
+}
+]
+},
+{
+"id": "reparaciones",
+"label": "Reparaciones",
+"sections": [
+{
+"title": "¿Se usa el módulo?",
+"gate": null,
+"qIds": [
+"GATE_REP"
+]
+},
+{
+"title": "Proceso de reparación",
+"gate": "GATE_REP",
+"qIds": [
+"P314",
+"P315",
+"P316",
+"P317",
+"P318",
+"P319",
+"P320"
+]
+},
+{
+"title": "Cotización e informes",
+"gate": "GATE_REP",
+"qIds": [
+"P321",
+"P322"
+]
+}
+]
+}
+];
 
-function selectQuestion(qId){
-  const q=Q_MAP[qId];
-  if(!q)return;
-  document.getElementById('stdQid').textContent=`ID: ${qId}`;
-  document.getElementById('stdFunc').textContent=q.func;
-  document.getElementById('stdTxt').textContent=q.std;
-  document.getElementById('stdPanel').classList.add('active');
+// Build MODS from structure + Q_MAP
+const MODS=MODS_STRUCT.map(m=>({...m,sections:m.sections.map(s=>({...s,qs:s.qIds.map(id=>{const d=Q_MAP[id]||{text:'?',func:'?',std:'',parent:null,children:null};return{id,...d};})}))}));
+
+// State
+let answers={},activeMod='comercial',activeFilter='all',searchTerm='';
+let shownSec={},shownGrp={};
+
+// Helpers
+function findQ(id){for(const m of MODS)for(const s of m.sections)for(const q of s.qs)if(q.id===id)return q;return null;}
+function secLocked(sec){if(!sec.gate)return false;return(answers[sec.gate]||{}).status==='noaplica';}
+function qHidden(q){if(!q.parent)return false;if(shownGrp[q.parent])return false;return(answers[q.parent]||{}).status==='noaplica';}
+function mf(id){const s=(answers[id]||{}).status;if(activeFilter==='all')return true;if(activeFilter==='gap')return s==='gap';if(activeFilter==='dev')return s==='dev';if(activeFilter==='pending')return!s;return true;}
+function ms(q){if(!searchTerm)return true;const s=searchTerm.toLowerCase();return q.text.toLowerCase().includes(s)||q.func.toLowerCase().includes(s)||(q.std||'').toLowerCase().includes(s);}
+function getTotal(){let c=0;MODS.forEach(m=>m.sections.forEach(s=>{if(secLocked(s)&&!shownSec[s.title])return;s.qs.forEach(q=>{if(!qHidden(q))c++;});}));return c;}
+function updateProgress(){const tot=getTotal(),ans=Object.values(answers).filter(a=>a.status).length;document.getElementById('pfill').style.width=(tot?Math.round(ans/tot*100):0)+'%';document.getElementById('plbl').textContent=ans+'/'+tot;}
+
+// Tabs
+function renderTabs(){
+  const bar=document.getElementById('tabbar');
+  bar.innerHTML=MODS.map(m=>{
+    const allQs=m.sections.flatMap(s=>s.qs);
+    const gaps=allQs.filter(q=>(answers[q.id]||{}).status==='gap').length;
+    const done=allQs.filter(q=>(answers[q.id]||{}).status).length;
+    const tot=allQs.length;
+    const bc=gaps>0?'gap':(done===tot&&tot>0?'done':'');
+    return`<button class="tab-btn${m.id===activeMod?' active':''}" onclick="switchMod('${m.id}')">${m.label}<span class="tbadge ${bc}">${done}/${tot}</span></button>`;
+  }).join('')+`<button class="tab-btn" onclick="showSum()" style="margin-left:auto">📊 Resumen</button>`;
 }
 
-function closeStdPanel(){
-  document.getElementById('stdPanel').classList.remove('active');
+// Options
+const OPTS=[
+  {v:'standard',l:'✓ Estándar Odoo',c:'rstd'},
+  {v:'gap',l:'⚠ Gap',c:'rgap'},
+  {v:'dev',l:'⚙ Desarrollo',c:'rdev'},
+  {v:'noaplica',l:'— No aplica',c:'rna'},
+];
+
+// Card renderer
+function renderCard(q,isChild){
+  const a=answers[q.id]||{};
+  const cls=(isChild?'child ':'')+(a.status?'c'+a.status:'');
+  const showNote=a.status&&a.status!=='noaplica';
+  const stdBox=q.std?`<div class="std-box"><div class="std-lbl">Estándar Odoo v19</div><div class="std-txt">${q.std}</div></div>`:'';
+  return`<div class="qcard ${cls}" id="qc-${q.id}">
+  <div class="qhdr"><span class="qnum">${q.id}</span>
+    <div style="flex:1"><div class="qtxt">${q.text}</div><span class="qfunc">${q.func}</span></div>
+  </div>
+  ${stdBox}
+  <div class="rads">${OPTS.map(o=>`<button class="rbtn${a.status===o.v?' '+o.c:''}" onclick="setStatus('${q.id}','${o.v}')">${o.l}</button>`).join('')}</div>
+  <div id="na-${q.id}" style="display:${showNote?'block':'none'}">
+    <span class="notelbl">Notas / necesidad del cliente:</span>
+    <textarea class="noteinp" id="nt-${q.id}" oninput="saveNote('${q.id}')" placeholder="Describir la necesidad, el gap o el requerimiento de desarrollo...">${a.note||''}</textarea>
+  </div>
+</div>`;
+}
+
+// Section renderer
+function renderSec(sec){
+  const locked=secLocked(sec),forced=shownSec[sec.title];
+  if(locked&&!forced){
+    const gq=sec.qs.find(q=>q.id===sec.gate);
+    return`<div class="sec"><div class="sec-hdr">${sec.title}</div>
+      <div class="sec-skip"><span>🔒 Sección omitida porque <b>"${gq?gq.func:sec.gate}"</b> no aplica</span>
+        <button onclick="shownSec[${JSON.stringify(sec.title)}]=true;renderQuestions()">Mostrar igualmente</button>
+      </div></div>`;
+  }
+  const rendered=new Set();
+  let html='',anyQ=false;
+  sec.qs.forEach(q=>{
+    if(rendered.has(q.id))return;
+    rendered.add(q.id);
+    if(q.parent&&!shownGrp[q.parent]&&(answers[q.parent]||{}).status==='noaplica')return;
+    const visible=mf(q.id)&&ms(q);
+    if(visible){anyQ=true;html+=renderCard(q,!!q.parent);}
+    if(q.children&&q.children.length){
+      const naParent=(answers[q.id]||{}).status==='noaplica';
+      const childQs=q.children.map(cid=>sec.qs.find(x=>x.id===cid)||findQ(cid)).filter(Boolean);
+      childQs.forEach(c=>rendered.add(c.id));
+      if(naParent&&!shownGrp[q.id]){
+        if(visible){anyQ=true;html+=`<div class="dep-hide">🔒 ${childQs.length} pregunta${childQs.length>1?'s':''} oculta${childQs.length>1?'s':''} porque <b>"${q.func}"</b> no aplica <button onclick="shownGrp[${JSON.stringify(q.id)}]=true;renderQuestions()">Mostrar</button></div>`;}
+      }else{
+        childQs.forEach(c=>{if(mf(c.id)&&ms(c)){anyQ=true;html+=renderCard(c,true);}});
+      }
+    }
+  });
+  if(!anyQ)return'';
+  return`<div class="sec"><div class="sec-hdr">${sec.title}${locked&&forced?' <span style="font-size:10px;color:var(--text3);text-transform:none;letter-spacing:0">(manual)</span>':''}</div>${html}</div>`;
 }
 
 function renderQuestions(){
-  const wrap=document.getElementById('qwrap');
-  wrap.innerHTML='';
-  // Renderiza las preguntas aquí
+  const mod=MODS.find(m=>m.id===activeMod);
+  if(!mod){document.getElementById('qwrap').innerHTML='';return;}
+  let html='';mod.sections.forEach(s=>{html+=renderSec(s);});
+  if(!html.trim())html='<div class="nores">No hay preguntas que coincidan con el filtro aplicado.</div>';
+  document.getElementById('qwrap').innerHTML=html;
 }
 
-function showSum(){alert('Resumen');}
-function saveState(){alert('Guardado');}
-function loadState(){alert('Cargado');}
-function exportTxt(){alert('Exportado');}
-function clearAll(){alert('Limpiado');}
-function doSearch(v){console.log('Búsqueda:',v);}
-function setF(f,el){document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));el.classList.add('on');}
+// Actions
+function setStatus(qid,val){
+  if(!answers[qid])answers[qid]={};
+  const prev=answers[qid].status;
+  answers[qid].status=val;
+  const na=document.getElementById('na-'+qid);
+  if(na)na.style.display=(val&&val!=='noaplica')?'block':'none';
+  const c=document.getElementById('qc-'+qid);
+  if(c){
+    const isChild=c.classList.contains('child');
+    c.className='qcard '+(isChild?'child ':'')+(val?'c'+val:'');
+    const rads=c.querySelector('.rads');
+    if(rads)rads.innerHTML=OPTS.map(o=>`<button class="rbtn${val===o.v?' '+o.c:''}" onclick="setStatus('${qid}','${o.v}')">${o.l}</button>`).join('');
+  }
+  const q=findQ(qid);
+  const isSecGate=MODS.some(m=>m.sections.some(s=>s.gate===qid));
+  const hasChildren=q&&q.children&&q.children.length>0;
+  if((isSecGate||hasChildren)&&prev!==val)renderQuestions();
+  updateProgress();renderTabs();
+}
 
-document.addEventListener('DOMContentLoaded',()=>{
-  document.querySelectorAll('.qcard').forEach(card=>{
-    const qId=card.getAttribute('data-qid');
-    if(qId) card.addEventListener('click',()=>selectQuestion(qId));
+function saveNote(qid){if(!answers[qid])answers[qid]={};const el=document.getElementById('nt-'+qid);if(el)answers[qid].note=el.value;}
+
+function switchMod(id){
+  activeMod=id;
+  document.getElementById('qwrap').style.display='';
+  document.getElementById('sumview').style.display='none';
+  renderTabs();renderQuestions();
+}
+
+function setF(f,btn){
+  activeFilter=f;
+  document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));
+  btn.classList.add('on');
+  renderQuestions();
+}
+
+function doSearch(v){searchTerm=v;renderQuestions();}
+
+// Summary
+function showSum(){
+  document.getElementById('qwrap').style.display='none';
+  document.getElementById('sumview').style.display='block';
+  let std=0,gaps=0,devs=0,tot=0;
+  const glist=[],dlist=[];
+  MODS.forEach(m=>m.sections.forEach(s=>s.qs.forEach(q=>{
+    const a=answers[q.id]||{};if(!a.status)return;tot++;
+    if(a.status==='standard')std++;
+    if(a.status==='gap'){gaps++;glist.push({...q,note:a.note,mod:m.label});}
+    if(a.status==='dev'){devs++;dlist.push({...q,note:a.note,mod:m.label});}
+  })));
+  const mkList=(list,dotCls,title)=>{
+    if(!list.length)return'';
+    return`<div style="margin-bottom:20px"><div class="sec-hdr">${title} (${list.length})</div><div class="glist">`
+      +list.map(g=>`<div class="grow"><div class="gdot ${dotCls}"></div><div>
+        <div class="gtxt">${g.text}</div>
+        <div class="gmeta">${g.mod} · ${g.func}${g.note?' · '+g.note:''}</div>
+        ${g.std?`<div class="gstd">Estándar: ${g.std}</div>`:''}
+      </div></div>`).join('')+'</div></div>';
+  };
+  document.getElementById('sumview').innerHTML=
+    `<div class="sumwrap"><div class="sgrid">
+      <div class="scard"><div class="sn">${tot}</div><div class="sl">Respondidas</div></div>
+      <div class="scard"><div class="sn ss">${std}</div><div class="sl">Estándar Odoo</div></div>
+      <div class="scard"><div class="sn sg">${gaps}</div><div class="sl">Gaps</div></div>
+      <div class="scard"><div class="sn sd">${devs}</div><div class="sl">Desarrollos</div></div>
+    </div>
+    <div class="btns">
+      <button class="bpri" onclick="exportTxt()">Exportar .txt ↗</button>
+      <button class="bsec" onclick="backToQ()">← Volver</button>
+    </div></div>`
+    +mkList(glist,'gg','Gaps identificados')
+    +mkList(dlist,'gd','Desarrollos requeridos')
+    +(!glist.length&&!dlist.length?'<div class="nores">Aún no hay gaps ni desarrollos identificados. Completá el relevamiento primero.</div>':'');
+}
+
+function backToQ(){
+  document.getElementById('qwrap').style.display='';
+  document.getElementById('sumview').style.display='none';
+  renderTabs();renderQuestions();
+}
+
+// Export
+function exportTxt(){
+  const cl=document.getElementById('c1').value||'(sin nombre)';
+  const co=document.getElementById('c2').value||'(sin nombre)';
+  const dt=document.getElementById('c3').value||new Date().toLocaleDateString('es-AR');
+  const ind=document.getElementById('c4').value||'(sin especificar)';
+  let t='RELEVAMIENTO DE ALCANCE — ODOO v19\n'+'='.repeat(50)+'\n';
+  t+=`Cliente: ${cl}\nConsultor: ${co}\nFecha: ${dt}\nRubro: ${ind}\n\n`;
+  t+='RESUMEN POR MÓDULO\n'+'─'.repeat(40)+'\n';
+  MODS.forEach(m=>{
+    const allQ=m.sections.flatMap(s=>s.qs);
+    const ans=allQ.filter(q=>(answers[q.id]||{}).status);
+    if(!ans.length)return;
+    const gs=ans.filter(q=>answers[q.id].status==='gap').length;
+    const ds=ans.filter(q=>answers[q.id].status==='dev').length;
+    const ss=ans.filter(q=>answers[q.id].status==='standard').length;
+    t+=`\n${m.label.toUpperCase()}: ${ans.length} respondidas · ${ss} estándar · ${gs} gaps · ${ds} desarrollo\n`;
   });
-});
+  const dump=(label,filter)=>{
+    t+='\n'+'='.repeat(50)+'\n'+label+'\n'+'─'.repeat(40)+'\n';
+    MODS.forEach(m=>{
+      const qs=m.sections.flatMap(s=>s.qs).filter(q=>(answers[q.id]||{}).status===filter);
+      if(!qs.length)return;
+      t+=`\n[${m.label}]\n`;
+      qs.forEach(q=>{
+        t+=`  • ${q.id}: ${q.text}\n`;
+        if(q.std)t+=`    Estándar Odoo: ${q.std}\n`;
+        if((answers[q.id]||{}).note)t+=`    Nota del cliente: ${answers[q.id].note}\n`;
+      });
+    });
+  };
+  dump('GAPS IDENTIFICADOS','gap');
+  dump('DESARROLLOS REQUERIDOS','dev');
+  const blob=new Blob([t],{type:'text/plain;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;a.download=`relevamiento_${cl.replace(/\s+/g,'_')}_${dt}.txt`;
+  document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);
+}
+
+// Save / Load session
+function saveState(){
+  const state={
+    answers,shownSec,shownGrp,
+    client:{c1:document.getElementById('c1').value,c2:document.getElementById('c2').value,
+            c3:document.getElementById('c3').value,c4:document.getElementById('c4').value}
+  };
+  const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  const cl=document.getElementById('c1').value||'sesion';
+  a.href=url;a.download=`relevamiento_${cl.replace(/\s+/g,'_')}.json`;
+  document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);
+}
+
+function loadState(){
+  const input=document.createElement('input');
+  input.type='file';input.accept='.json';
+  input.onchange=e=>{
+    const file=e.target.files[0];if(!file)return;
+    const reader=new FileReader();
+    reader.onload=ev=>{
+      try{
+        const state=JSON.parse(ev.target.result);
+        answers=state.answers||{};shownSec=state.shownSec||{};shownGrp=state.shownGrp||{};
+        if(state.client){['c1','c2','c3','c4'].forEach(k=>{const el=document.getElementById(k);if(el&&state.client[k])el.value=state.client[k];});}
+        updateProgress();renderTabs();renderQuestions();
+        alert('Sesión cargada correctamente.');
+      }catch(err){alert('Error al cargar el archivo.');}
+    };
+    reader.readAsText(file);
+  };
+  document.body.appendChild(input);input.click();document.body.removeChild(input);
+}
+
+function clearAll(){
+  if(!confirm('¿Seguro que querés limpiar todas las respuestas?'))return;
+  answers={};shownSec={};shownGrp={};
+  updateProgress();renderTabs();renderQuestions();
+}
+
+// Init
+document.getElementById('c3').valueAsDate=new Date();
+renderTabs();renderQuestions();updateProgress();
+
 </script>
 </body>
 </html>
