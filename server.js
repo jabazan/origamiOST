@@ -2,9 +2,10 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-const PORT = 3000;
+const PORT = 8080;
 const NOTION_API_KEY = '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';
 const NOTION_DATABASE_ID = '3428fd6ff3da80ea852cde1f44dd6e66';
+const PROJECT_DIR = path.dirname(__filename);
 
 const server = http.createServer(async (req, res) => {
   // CORS headers
@@ -21,7 +22,7 @@ const server = http.createServer(async (req, res) => {
   // Servir index.html
   if (req.url === '/' || req.url === '/index.html') {
     try {
-      let html = fs.readFileSync('index.html', 'utf-8');
+      let html = fs.readFileSync(path.join(PROJECT_DIR, 'index.html'), 'utf-8');
       // Inyectar el servidor proxy en el HTML
       const proxyScript = `
         <script>
@@ -32,8 +33,10 @@ const server = http.createServer(async (req, res) => {
       res.writeHead(200, { 'Content-Type': 'text/html' });
       res.end(html);
     } catch (err) {
+      console.error('Error loading index.html:', err.message);
+      console.error('Looking for file at:', path.join(PROJECT_DIR, 'index.html'));
       res.writeHead(500);
-      res.end('Error loading index.html');
+      res.end('Error loading index.html: ' + err.message);
     }
     return;
   }
@@ -44,6 +47,7 @@ const server = http.createServer(async (req, res) => {
     req.on('data', chunk => body += chunk);
     req.on('end', async () => {
       try {
+        console.log('📡 Petición a Notion:', body);
         const notionReq = require('https').request(
           {
             hostname: 'api.notion.com',
@@ -60,6 +64,7 @@ const server = http.createServer(async (req, res) => {
             let data = '';
             notionRes.on('data', chunk => data += chunk);
             notionRes.on('end', () => {
+              console.log('✅ Respuesta de Notion:', data.substring(0, 200) + '...');
               res.writeHead(200, { 'Content-Type': 'application/json' });
               res.end(data);
             });
@@ -67,6 +72,7 @@ const server = http.createServer(async (req, res) => {
         );
 
         notionReq.on('error', err => {
+          console.error('❌ Error en Notion:', err.message);
           res.writeHead(500);
           res.end(JSON.stringify({ error: err.message }));
         });
@@ -74,6 +80,7 @@ const server = http.createServer(async (req, res) => {
         notionReq.write(body);
         notionReq.end();
       } catch (err) {
+        console.error('❌ Error en try/catch:', err);
         res.writeHead(500);
         res.end(JSON.stringify({ error: err.message }));
       }
@@ -82,7 +89,7 @@ const server = http.createServer(async (req, res) => {
   }
 
   // Otros archivos
-  const filePath = path.join(__dirname, req.url);
+  const filePath = path.join(PROJECT_DIR, req.url);
   if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
     try {
       const content = fs.readFileSync(filePath);

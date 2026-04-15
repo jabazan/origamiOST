@@ -204,26 +204,39 @@ async function loadQMapFromNotion() {
       if (!res.ok) throw new Error(`Notion API: ${res.statusText}`);
 
       const data = await res.json();
+      console.log('📦 Respuesta de Notion:', { resultCount: data.results?.length || 0, hasMore: data.has_more });
+      if (data.results && data.results.length > 0) {
+        console.log('📄 Primera pregunta:', data.results[0].properties);
+      }
       allPages.push(...data.results);
       hasMore = data.has_more;
       cursor = data.next_cursor;
     }
 
+    console.log(`🔄 Total de preguntas a procesar: ${allPages.length}`);
+
     // Transformar datos
     const childrenMap = {};
     allPages.forEach(page => {
       const props = page.properties;
-      const id = props['userDefined:ID']?.title?.[0]?.text?.content || '';
-      if (!id) return;
+      // Buscar ID en el campo 'ID' (es title, no userDefined:ID)
+      const id = props['ID']?.title?.[0]?.text?.content || '';
+      if (!id) {
+        console.warn('⚠️ Página sin ID:', page.id);
+        return;
+      }
 
       const getText = (field) => field?.rich_text?.map(t => t.text?.content || '').join('') || '';
+
+      // Obtener parent ID desde 'Pregunta Padre' (es rich_text, no relation)
+      const parentText = getText(props['Pregunta Padre']);
 
       Q_MAP[id] = {
         id,
         text: getText(props['Pregunta']),
         func: props['Función']?.select?.name || '',
         std: getText(props['Descripción Estándar']),
-        parent: props['Pregunta Padre']?.relation?.[0]?.id || null,
+        parent: parentText || null,
         children: null
       };
 
@@ -245,12 +258,20 @@ async function loadQMapFromNotion() {
     localStorage.setItem('Q_MAP_CACHE_TIME', Date.now().toString());
 
     console.log(`Q_MAP cargado: ${Object.keys(Q_MAP).length} preguntas`);
+    if (Object.keys(Q_MAP).length > 0) {
+      const sampleId = Object.keys(Q_MAP)[0];
+      console.log(`📋 Ejemplo de pregunta [${sampleId}]:`, Q_MAP[sampleId]);
+    }
   } catch (error) {
     console.error('Error cargando Notion:', error);
     const cached = localStorage.getItem('Q_MAP_CACHE');
     if (cached) {
       Q_MAP = JSON.parse(cached);
-      console.warn('Usando caché como fallback');
+      console.warn(`Usando caché como fallback (${Object.keys(Q_MAP).length} preguntas)`);
+      if (Object.keys(Q_MAP).length > 0) {
+        const sampleId = Object.keys(Q_MAP)[0];
+        console.log(`📋 Ejemplo desde caché [${sampleId}]:`, Q_MAP[sampleId]);
+      }
     } else {
       throw error;
     }
@@ -909,8 +930,8 @@ const MODS_STRUCT=[
 }
 ];
 
-// Build MODS from structure + Q_MAP
-const MODS=MODS_STRUCT.map(m=>({...m,sections:m.sections.map(s=>({...s,qs:s.qIds.map(id=>{const d=Q_MAP[id]||{text:'?',func:'?',std:'',parent:null,children:null};return{id,...d};})}))}));
+// Build MODS from structure + Q_MAP (will be built after Q_MAP loads)
+let MODS=[];
 
 // State
 let answers={},activeMod='comercial',activeFilter='all',searchTerm='';
@@ -1170,6 +1191,10 @@ function clearAll(){
 
 // Init - Esperar a cargar Q_MAP desde Notion
 function initializeApp() {
+  // Construir MODS DESPUÉS de que Q_MAP esté cargado
+  MODS=MODS_STRUCT.map(m=>({...m,sections:m.sections.map(s=>({...s,qs:s.qIds.map(id=>{const d=Q_MAP[id]||{text:'?',func:'?',std:'',parent:null,children:null};return{id,...d};})}))}));
+  console.log('🏗️ MODS construido con', MODS.reduce((sum,m)=>sum+m.sections.length,0), 'secciones');
+
   document.getElementById('c3').valueAsDate=new Date();
   renderTabs();renderQuestions();updateProgress();
   document.querySelectorAll('.qcard').forEach(card=>{
