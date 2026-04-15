@@ -157,7 +157,14 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
   <button class="bsec" onclick="exportTxt()">📄 Exportar .txt</button>
   <button class="bsec" onclick="clearAll()" style="margin-left:auto">Limpiar todo</button>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script>
+// Configurar Markdown parser
+marked.setOptions({
+  breaks: true,
+  gfm: true
+});
+
 // Configurar URL del proxy de Notion automáticamente
 // Para desarrollo local: http://localhost:8080/api/notion
 // Para Vercel: /api/notion (relativo)
@@ -1236,7 +1243,8 @@ function selectQuestion(qId){
   if(!q)return;
   document.getElementById('stdQid').textContent=`ID: ${qId}`;
   document.getElementById('stdFunc').textContent=q.func;
-  document.getElementById('stdTxt').textContent=q.std;
+  // Renderizar Markdown en la descripción estándar
+  document.getElementById('stdTxt').innerHTML=marked.parse(q.std || '');
   document.getElementById('stdPanel').classList.add('active');
 }
 
