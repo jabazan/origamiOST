@@ -25,17 +25,10 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  // Servir index.html
+  // Servir index.html (sin inyección - usar auto-detección en el HTML)
   if (req.url === '/' || req.url === '/index.html') {
     try {
       let html = fs.readFileSync(path.join(PROJECT_DIR, 'index.html'), 'utf-8');
-      // Inyectar el servidor proxy en el HTML
-      const proxyScript = `
-        <script>
-          window.NOTION_PROXY_URL = 'http://localhost:${PORT}/api/notion';
-        </script>
-      `;
-      html = html.replace('</head>', `${proxyScript}</head>`);
       res.writeHead(200, { 'Content-Type': 'text/html' });
       res.end(html);
     } catch (err) {
