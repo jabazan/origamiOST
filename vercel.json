@@ -1,11 +1,14 @@
 {
-  "buildCommand": "npm install",
-  "framework": "static",
-  "public": "public",
   "functions": {
     "api/**/*.js": {
       "memory": 1024,
       "maxDuration": 30
     }
-  }
+  },
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/public/$1"
+    }
+  ]
 }
