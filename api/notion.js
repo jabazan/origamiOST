@@ -53,8 +53,15 @@ export default async function handler(req, res) {
         let data = '';
         notionRes.on('data', chunk => data += chunk);
         notionRes.on('end', () => {
-          console.log('✅ Respuesta de Notion:', data.substring(0, 100) + '...');
-          resolve(JSON.parse(data));
+          console.log('✅ Respuesta de Notion (status:', notionRes.statusCode, '):', data);
+          try {
+            const parsed = JSON.parse(data);
+            console.log('📊 Parsed data:', JSON.stringify(parsed).substring(0, 200));
+            resolve(parsed);
+          } catch (e) {
+            console.error('❌ Error parsing Notion response:', e.message);
+            reject(e);
+          }
         });
       });
 
