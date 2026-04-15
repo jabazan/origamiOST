@@ -262,7 +262,8 @@ async function loadQMapFromNotion() {
         func: props['Función']?.select?.name || '',
         std: getText(props['Descripción Estándar']),
         parent: parentText || null,
-        children: null
+        children: null,
+        _pageId: page.id
       };
 
       if (Q_MAP[id].parent && !childrenMap[Q_MAP[id].parent]) {
@@ -1238,15 +1239,11 @@ document.addEventListener('DOMContentLoaded',()=>{
   });
 });
 
-function selectQuestion(qId){
-  const q=Q_MAP[qId];
-  if(!q)return;
-  document.getElementById('stdQid').textContent=`ID: ${qId}`;
-  document.getElementById('stdFunc').textContent=q.func;
-  // Renderizar Markdown en la descripción estándar
-  document.getElementById('stdTxt').innerHTML=marked.parse(q.std || '');
-  document.getElementById('stdPanel').classList.add('active');
-}
+function escapeHtml(t){return t.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));}
+function getNotionText(a){return a?.map(r=>r.text?.content||'').join('')||'';}
+function renderNotionBlocks(blocks){if(!blocks?.length)return '';let h='',inList=false,listType=null;blocks.forEach(b=>{const t=b.type,c=b[t],isList=t==='bulleted_list_item'||t==='numbered_list_item',newList=(t==='bulleted_list_item'&&listType!=='ul')||(t==='numbered_list_item'&&listType!=='ol');if(isList&&!inList){listType=t==='bulleted_list_item'?'ul':'ol';h+=listType==='ul'?'<ul style="margin:10px 0 10px 20px">':'<ol style="margin:10px 0 10px 20px">';inList=true;}else if(isList&&newList){h+=listType==='ul'?'</ul>':'</ol>';listType=t==='bulleted_list_item'?'ul':'ol';h+=listType==='ul'?'<ul style="margin:10px 0 10px 20px">':'<ol style="margin:10px 0 10px 20px">';}else if(!isList&&inList){h+=listType==='ul'?'</ul>':'</ol>';inList=false;listType=null;}switch(t){case'paragraph':{const txt=getNotionText(c?.rich_text);if(txt)h+=`<p style="margin:10px 0;line-height:1.6">${marked.parse(txt)}</p>`;break;}case'heading_1':case'heading_2':case'heading_3':{const lv=parseInt(t[8]),txt=getNotionText(c?.rich_text);if(txt)h+=`<h${lv} style="margin:15px 0 8px;font-weight:600">${escapeHtml(txt)}</h${lv}>`;break;}case'bulleted_list_item':case'numbered_list_item':{const txt=getNotionText(c?.rich_text);if(txt)h+=`<li style="margin-bottom:5px">${marked.parseInline(txt)}</li>`;break;}case'code':{const txt=getNotionText(c?.rich_text);if(txt)h+=`<pre style="background:var(--surface2);padding:10px;border-radius:5px;overflow-x:auto;margin:10px 0;font-size:12px"><code>${escapeHtml(txt)}</code></pre>`;break;}case'quote':{const txt=getNotionText(c?.rich_text);if(txt)h+=`<blockquote style="border-left:4px solid var(--accent);padding-left:12px;margin:10px 0;color:var(--text2);font-style:italic">${marked.parseInline(txt)}</blockquote>`;break;}case'divider':h+='<hr style="margin:20px 0;border:none;border-top:1px solid var(--border)">';break;case'image':{const url=c?.external?.url||c?.file?.url;if(url)h+=`<img src="${url}" style="max-width:100%;height:auto;border-radius:6px;margin:10px 0;box-shadow:0 2px 8px rgba(0,0,0,.1)">`;break;}}});if(inList)h+=listType==='ul'?'</ul>':'</ol>';return h;}
+
+async function selectQuestion(qId){const q=Q_MAP[qId];if(!q)return;document.getElementById('stdQid').textContent=`ID: ${qId}`;document.getElementById('stdFunc').textContent=q.func;const std=document.getElementById('stdTxt');std.innerHTML='<em style="color:var(--text3)">⏳ Cargando...</em>';document.getElementById('stdPanel').classList.add('active');if(q._pageId){try{const url=`${NOTION_PROXY_URL.replace('/api/notion','/api/notion-content')}?pageId=${q._pageId}`;const res=await fetch(url);if(res.ok){const data=await res.json();if(data.results?.length>0){std.innerHTML=renderNotionBlocks(data.results);return;}}}catch(e){console.log('ℹ️ Contenido no disponible');}}if(q.std){std.innerHTML=marked.parse(q.std);}else{std.innerHTML='<em>(sin descripción)</em>';}}
 
 function closeStdPanel(){
   document.getElementById('stdPanel').classList.remove('active');
