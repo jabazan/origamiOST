@@ -8,6 +8,10 @@ node_modules/
 package-lock.json
 yarn.lock
 
+# Vercel
+.vercel
+.vercel/
+
 # IDE
 .vscode/
 .idea/
