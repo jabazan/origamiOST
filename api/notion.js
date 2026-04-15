@@ -25,12 +25,15 @@ export default async function handler(req, res) {
   // Validar credenciales
   if (!NOTION_API_KEY || !NOTION_DATABASE_ID) {
     console.error('❌ Credenciales de Notion no configuradas');
-    return res.status(500).json({ error: 'Server configuration error' });
+    console.error('NOTION_API_KEY:', NOTION_API_KEY ? 'definido' : 'FALTA');
+    console.error('NOTION_DATABASE_ID:', NOTION_DATABASE_ID ? 'definido' : 'FALTA');
+    return res.status(500).json({ error: 'Server configuration error - missing credentials' });
   }
 
   try {
     const body = JSON.stringify(req.body);
     console.log('📡 Petición a Notion:', body.substring(0, 100));
+    console.log('📍 Database ID:', NOTION_DATABASE_ID);
 
     // Hacer petición a Notion API
     const notionData = await new Promise((resolve, reject) => {
