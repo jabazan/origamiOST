@@ -1,0 +1,20 @@
+{
+  "name": "odoo-scope-tool",
+  "version": "1.0.0",
+  "description": "Odoo Scope Relevamiento Tool with Notion Integration",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "odoo",
+    "scope",
+    "notion"
+  ],
+  "author": "Origami Soft",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  }
+}

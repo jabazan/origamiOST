@@ -1,11 +1,17 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+require('dotenv').config();
 
-const PORT = 8080;
-const NOTION_API_KEY = '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';
-const NOTION_DATABASE_ID = '3428fd6ff3da80ea852cde1f44dd6e66';
+const PORT = process.env.PORT || 8080;
+const NOTION_API_KEY = process.env.NOTION_API_KEY;
+const NOTION_DATABASE_ID = process.env.NOTION_DATABASE_ID;
 const PROJECT_DIR = path.dirname(__filename);
+
+if (!NOTION_API_KEY || !NOTION_DATABASE_ID) {
+  console.error('❌ Error: NOTION_API_KEY o NOTION_DATABASE_ID no están definidos en .env');
+  process.exit(1);
+}
 
 const server = http.createServer(async (req, res) => {
   // CORS headers
