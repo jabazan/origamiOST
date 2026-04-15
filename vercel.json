@@ -2,10 +2,6 @@
   "buildCommand": "npm install",
   "framework": "static",
   "public": "public",
-  "env": [
-    "NOTION_API_KEY",
-    "NOTION_DATABASE_ID"
-  ],
   "functions": {
     "api/**/*.js": {
       "memory": 1024,
