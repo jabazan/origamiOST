@@ -210,6 +210,18 @@ async function loadQMapFromNotion() {
       if (!res.ok) throw new Error(`Notion API: ${res.statusText}`);
 
       const data = await res.json();
+      console.log('📦 Respuesta de Notion completa:', JSON.stringify(data).substring(0, 500));
+
+      // Verificar si hay error de Notion
+      if (data.object === 'error' || data.error) {
+        throw new Error(`Notion API Error: ${data.message || JSON.stringify(data)}`);
+      }
+
+      if (!data.results) {
+        console.error('❌ ERROR: Respuesta de Notion sin results:', data);
+        throw new Error('Invalid response from Notion: no results field. Response: ' + JSON.stringify(data));
+      }
+
       console.log('📦 Respuesta de Notion:', { resultCount: data.results?.length || 0, hasMore: data.has_more });
       if (data.results && data.results.length > 0) {
         console.log('📄 Primera pregunta:', data.results[0].properties);
